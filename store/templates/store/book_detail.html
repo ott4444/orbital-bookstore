@@ -25,7 +25,7 @@
     <!-- Add to Favorites Button (Only if user is logged in) -->
     {% if user.is_authenticated %}
     <p>
-        <a href="{% url 'add_to_favorites' book.id %}">Add to Favorites</a>
+        <a href="{% url 'add_to_favorites' 'book' book.id %}">Add to Favorites</a>
     </p>
     {% endif %}
 
@@ -48,7 +48,6 @@
         <a href="{% url 'add_review' book.id %}">Write a Review</a>
     </p>
     {% endif %}
-
 
     <!-- Back to Book List -->
     <p><a href="{% url 'home' %}">Back to Book List</a></p>

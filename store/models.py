@@ -184,12 +184,20 @@ class Order(models.Model):
     bookmark = models.ForeignKey(Bookmark, on_delete=models.CASCADE, blank=True, null=True)
     booklet_folder = models.ForeignKey(BookletFolder, on_delete=models.CASCADE, blank=True, null=True)
     school_office = models.ForeignKey(SchoolOffice, on_delete=models.CASCADE, blank=True, null=True)
+    delivery_method = models.CharField(max_length=100,
+                                       choices=[('parcel_machine', 'Parcel Machine'), ('post_office', 'Post Office'),
+                                                ('courier', 'Courier'), ('pickup', 'Pick up by Yourself')], null=True,
+                                       blank=True)
+    parcel_machine_location = models.CharField(max_length=255, blank=True, null=True)
+    post_office_location = models.CharField(max_length=255, blank=True, null=True)
+    home_address = models.CharField(max_length=255, blank=True, null=True)
+    phone_number = models.CharField(max_length=20, blank=True, null=True)
 
     price = models.DecimalField(max_digits=10, decimal_places=2)
     quantity = models.IntegerField()
     total_cost = models.DecimalField(max_digits=10, decimal_places=2)
     status = models.CharField(max_length=50, default='Pending')
-    payment_method = models.CharField(max_length=50)
+    payment_method = models.CharField(max_length=50, blank=False, null=False)
     payment_status = models.CharField(max_length=50)
     delivery_email = models.CharField(max_length=255)
     email_sent_date = models.DateTimeField(null=True, blank=True)

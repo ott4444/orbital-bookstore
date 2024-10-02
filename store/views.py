@@ -1,16 +1,16 @@
 import logging
 from django.db.models import Q
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
-from .models import User
-from django.shortcuts import get_object_or_404, redirect
 from django.contrib.auth import login
 from django.contrib.auth import get_user_model
 from django.contrib.auth.hashers import make_password
 from .models import Book, Ebook, Accessory, BookWrap, Bookmark, SchoolOffice, BookletFolder, Pencil, Other, Cart, Order, Favorite, Review
+from django import forms
 
 
+User = get_user_model()
 
 
 def home(request):
@@ -19,12 +19,9 @@ def home(request):
 
 
 def book_detail(request, book_id):
-    book = Book.objects.get(id=book_id)
+    book = get_object_or_404(Book, id=book_id)
     reviews = Review.objects.filter(book=book)
     return render(request, 'store/book_detail.html', {'book': book, 'reviews': reviews})
-
-
-User = get_user_model()
 
 
 def register(request):
@@ -34,7 +31,6 @@ def register(request):
         password1 = request.POST.get('password1')
         password2 = request.POST.get('password2')
 
-        # Basic validation
         if password1 != password2:
             messages.error(request, 'Passwords do not match.')
             return render(request, 'store/register.html')
@@ -58,38 +54,33 @@ def register(request):
         login(request, user)
 
         messages.success(request, f'Account created for {user.username}!')
-        return redirect('home')  # Redirect after successful registration
+        return redirect('home')
 
     return render(request, 'store/register.html')
 
 
 @login_required
 def add_to_cart(request, item_type, item_id):
-    # Initialize variables
-    item = None
-    item_price = 0
-
     # Fetch the item based on the item_type
-    if item_type == "book":
-        item = Book.objects.filter(id=item_id).first()
-    elif item_type == "ebook":
-        item = Ebook.objects.filter(id=item_id).first()
-    elif item_type == "accessory":
-        item = Accessory.objects.filter(id=item_id).first()
-    elif item_type == "pencil":
-        item = Pencil.objects.filter(id=item_id).first()
-    elif item_type == "other":
-        item = Other.objects.filter(id=item_id).first()
-    elif item_type == "book_wrap":
-        item = BookWrap.objects.filter(id=item_id).first()
-    elif item_type == "bookmark":
-        item = Bookmark.objects.filter(id=item_id).first()
-    elif item_type == "booklet_folder":
-        item = BookletFolder.objects.filter(id=item_id).first()
-    elif item_type == "school_office":
-        item = SchoolOffice.objects.filter(id=item_id).first()
+    item_model_mapping = {
+        "book": Book,
+        "ebook": Ebook,
+        "accessory": Accessory,
+        "pencil": Pencil,
+        "other": Other,
+        "book_wrap": BookWrap,
+        "bookmark": Bookmark,
+        "booklet_folder": BookletFolder,
+        "school_office": SchoolOffice
+    }
 
-    # Handle adding to cart
+    item_model = item_model_mapping.get(item_type)
+    if not item_model:
+        messages.error(request, "Invalid item type.")
+        return redirect('home')
+
+    item = item_model.objects.filter(id=item_id).first()
+
     if item:
         cart_item, created = Cart.objects.get_or_create(
             user=request.user,
@@ -109,7 +100,6 @@ def add_to_cart(request, item_type, item_id):
     return redirect('view_cart')
 
 
-# Viewing the cart
 @login_required
 def view_cart(request):
     cart_items = Cart.objects.filter(user=request.user)
@@ -123,14 +113,25 @@ logger = logging.getLogger(__name__)
 def remove_from_cart(request, item_id):
     cart_item = get_object_or_404(Cart, id=item_id, user=request.user)
     cart_item.delete()
-    return redirect('view_cart')  # Redirect to the cart page after deletion
+    return redirect('view_cart')
+
+
+# Define a form for delivery options
+class DeliveryForm(forms.Form):
+    DELIVERY_CHOICES = [
+        ('parcel_machine', 'Parcel Machine'),
+        ('post_office', 'Pick up at the Post Office'),
+        ('courier', 'Home Delivery by Courier'),
+        ('self_pickup', 'Pick up by Yourself'),
+    ]
+    delivery_option = forms.ChoiceField(choices=DELIVERY_CHOICES, widget=forms.RadioSelect)
+    delivery_address = forms.CharField(max_length=255, required=False)
 
 
 @login_required
 def checkout(request):
     cart_items = Cart.objects.filter(user=request.user)
 
-    # Update total price calculation to check all item types
     total_price = sum(
         (item.book.price if item.book else 0) +
         (item.ebook.price if item.ebook else 0) +
@@ -158,7 +159,7 @@ def checkout(request):
         for item in cart_items:
             order_data = {
                 'user': request.user,
-                'price': item.total_cost / item.quantity,  # Use per-item price
+                'price': item.total_cost / item.quantity,
                 'quantity': item.quantity,
                 'total_cost': item.total_cost,
                 'status': 'Pending',
@@ -167,7 +168,6 @@ def checkout(request):
                 'delivery_email': delivery_email,
             }
 
-            # Create an Order for the correct item type
             if item.book:
                 order_data['book'] = item.book
             elif item.ebook:
@@ -196,37 +196,21 @@ def checkout(request):
     return render(request, 'store/checkout.html', {'cart_items': cart_items, 'total_price': total_price})
 
 
+
+
 @login_required
 def order_success(request):
-    # Fetch recent orders using order_date
+    # Fetch recent orders for the user, assuming you want to show the last 5 orders.
     orders = Order.objects.filter(user=request.user).order_by('-order_date')[:5]
+
+    # Check if the order contains ebooks to provide download links
+    for order in orders:
+        if order.ebook:
+            order.download_link = order.ebook.download_link  # Assuming `download_link` is a field in the `Ebook` model
+        elif order.book:
+            order.download_link = order.book.download_link  # Assuming physical books have download links
+
     return render(request, 'store/order_success.html', {'orders': orders})
-
-
-@login_required
-def add_to_favorites(request, item_id):
-    # Fetch items from all possible models
-    book = Book.objects.filter(id=item_id).first()
-    ebook = Ebook.objects.filter(id=item_id).first()
-    accessory = Accessory.objects.filter(id=item_id).first()
-
-    # Check and add the item to favorites
-    if book:
-        favorite, created = Favorite.objects.get_or_create(user=request.user, book=book)
-    elif ebook:
-        favorite, created = Favorite.objects.get_or_create(user=request.user, ebook=ebook)
-    elif accessory:
-        favorite, created = Favorite.objects.get_or_create(user=request.user, accessory=accessory)
-    else:
-        messages.error(request, "Item not found.")
-        return redirect('home')
-
-    if created:
-        messages.success(request, 'Item added to your favorites.')
-    else:
-        messages.info(request, 'Item is already in your favorites.')
-
-    return redirect('home')
 
 
 @login_required
@@ -422,3 +406,31 @@ def ebooks_view(request):
 def ebook_detail(request, ebook_id):
     ebook = get_object_or_404(Ebook, id=ebook_id)  # Fetch the e-book or return a 404 error
     return render(request, 'store/e-book_details.html', {'ebook': ebook})
+
+
+@login_required
+def add_to_favorites(request, item_type, item_id):
+    # Initialize item variable
+    item = None
+
+    # Fetch the correct item based on the item_type
+    if item_type == 'book':
+        item = get_object_or_404(Book, id=item_id)
+    elif item_type == 'ebook':
+        item = get_object_or_404(Ebook, id=item_id)
+
+    # Check if the item exists in favorites and add it if not
+    if item:
+        favorite, created = Favorite.objects.get_or_create(
+            user=request.user,
+            book=item if item_type == 'book' else None,
+            ebook=item if item_type == 'ebook' else None
+        )
+
+        if created:
+            messages.success(request,
+                             f'{item.title if item_type == "book" else item.title} has been added to your favorites.')
+        else:
+            messages.info(request, f'{item.title if item_type == "book" else item.title} is already in your favorites.')
+
+    return redirect('view_favorites')  # Redirect to the favorites page

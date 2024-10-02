@@ -53,6 +53,14 @@
         a:hover {
             text-decoration: underline;
         }
+
+        .hidden {
+            display: none;
+        }
+
+        .visible {
+            display: block;
+        }
     </style>
 </head>
 <body>
@@ -60,6 +68,7 @@
 
     <form method="POST" action="{% url 'checkout' %}">
         {% csrf_token %}
+
         <h3>Order Summary</h3>
         <ul>
             {% for item in cart_items %}
@@ -74,45 +83,83 @@
                     <strong>{{ item.ebook.title }}</strong> by {{ item.ebook.author }}<br>
                     Price per item: €{{ item.ebook.price }}<br>
 
-                <!-- Display for Accessories -->
                 {% elif item.accessory %}
                     <strong>{{ item.accessory.name }}</strong><br>
                     Price per item: €{{ item.accessory.price }}<br>
 
-                <!-- Display for Book Wraps -->
                 {% elif item.book_wrap %}
                     <strong>{{ item.book_wrap.accessory.name }} - {{ item.book_wrap.color }}</strong><br>
-                    Price per item: €{{ item.book_wrap.accessory.price }}<br>
+                    Price per item: €{{ item.book_wrap.price }}<br>
 
                 {% elif item.bookmark %}
                     <strong>{{ item.bookmark.accessory.name }} - {{ item.bookmark.design }}</strong><br>
-                    Price per item: €{{ item.bookmark.accessory.price }}<br>
+                    Price per item: €{{ item.bookmark.price }}<br>
 
-                {% elif item.school_and_office %}
-                    <strong>{{ item.school_and_office.accessory.name }} - {{ item.school_and_office.design }}</strong><br>
-                    Price per item: €{{ item.School_and_office.accessory.price }}<br>
-
-                {% elif item.booklets_folders %}
-                    <strong>{{ item.booklets_folders.accessory.name }} - {{ item.booklets_folders.design }}</strong><br>
-                    Price per item: €{{ item.booklets_folders.accessory.price }}<br>
-
-                {% elif item.pencils %}
-                    <strong>{{ item.pencils.accessory.name }} - {{ item.pencils.design }}</strong><br>
-                    Price per item: €{{ item.pencils.accessory.price }}<br>
+                {% elif item.pencil %}
+                    <strong>{{ item.pencil.school_office.name }} - {{ item.pencil.pencil_type }}</strong><br>
+                    Price per item: €{{ item.pencil.price }}<br>
 
                 {% elif item.other %}
-                    <strong>{{ item.other.accessory.name }} - {{ item.other.design }}</strong><br>
-                    Price per item: €{{ item.other.accessory.price }}<br>
+                    <strong>{{ item.other.school_office.name }} - {{ item.other.description }}</strong><br>
+                    Price per item: €{{ item.other.price }}<br>
+
+                {% elif item.booklet_folder %}
+                    <strong>{{ item.booklet_folder.school_office.name }} - {{ item.booklet_folder.size }}</strong><br>
+                    Price per item: €{{ item.booklet_folder.price }}<br>
+
+                {% elif item.school_office %}
+                    <strong>{{ item.school_office.name }}</strong><br>
+                    Price per item: €{{ item.school_office.price }}<br>
 
                 {% endif %}
 
-                <!-- Quantity and Total Cost -->
                 Quantity: {{ item.quantity }}<br>
                 Total cost: €{{ item.total_cost }}<br>
             </li>
             {% endfor %}
         </ul>
         <p>Total Price: €{{ total_price }}</p>
+
+        <h3>Delivery Options</h3>
+        <label for="delivery_method">Select Delivery Method</label>
+        <select id="delivery_method" name="delivery_method" onchange="toggleDeliveryFields()">
+            <option value="">Select a delivery method</option>
+            <option value="parcel_machine">Parcel Machine</option>
+            <option value="post_office">Post Office</option>
+            <option value="courier">Courier</option>
+            <option value="pickup">Pick up by Yourself</option>
+        </select>
+
+        <!-- Parcel Machine Fields -->
+        <div id="parcel_machine_fields" class="hidden">
+            <h3>Parcel Machine Details</h3>
+            <label for="parcel_machine_location">Parcel Machine Location</label>
+            <input type="text" id="parcel_machine_location" name="parcel_machine_location" placeholder="City, Place">
+            <label for="phone_number">Phone Number</label>
+            <input type="tel" id="phone_number" name="phone_number" placeholder="Phone Number" required>
+        </div>
+
+        <!-- Post Office Fields -->
+        <div id="post_office_fields" class="hidden">
+            <h3>Post Office Details</h3>
+            <label for="post_office_location">Post Office Location</label>
+            <input type="text" id="post_office_location" name="post_office_location" placeholder="City, Place">
+        </div>
+
+        <!-- Courier Fields -->
+        <div id="courier_fields" class="hidden">
+            <h3>Courier Details</h3>
+            <label for="home_address">Home Address</label>
+            <input type="text" id="home_address" name="home_address" placeholder="Your home address">
+        </div>
+
+        <!-- Pickup Message -->
+        <div id="pickup_message" class="hidden">
+            <h3>Pick up by Yourself</h3>
+            <p>Welcome to our office! You can pick up your order at:</p>
+            <p><strong>123 Book Street, Booktown</strong></p>
+            <p>Opening hours: 9 AM - 6 PM, Monday to Friday</p>
+        </div>
 
         <h3>Payment Details</h3>
         <label for="payment_method">Payment Method</label>
@@ -130,5 +177,28 @@
 
     <br>
     <a href="{% url 'view_cart' %}">Back to Cart</a>
+
+    <!-- JavaScript to Toggle Delivery Fields -->
+    <script>
+        function toggleDeliveryFields() {
+            var deliveryMethod = document.getElementById('delivery_method').value;
+            document.getElementById('parcel_machine_fields').classList.add('hidden');
+            document.getElementById('post_office_fields').classList.add('hidden');
+            document.getElementById('courier_fields').classList.add('hidden');
+            document.getElementById('pickup_message').classList.add('hidden');
+            document.getElementById('phone_number').removeAttribute('required');
+
+            if (deliveryMethod === 'parcel_machine') {
+                document.getElementById('parcel_machine_fields').classList.remove('hidden');
+                document.getElementById('phone_number').setAttribute('required', 'required');
+            } else if (deliveryMethod === 'post_office') {
+                document.getElementById('post_office_fields').classList.remove('hidden');
+            } else if (deliveryMethod === 'courier') {
+                document.getElementById('courier_fields').classList.remove('hidden');
+            } else if (deliveryMethod === 'pickup') {
+                document.getElementById('pickup_message').classList.remove('hidden');
+            }
+        }
+    </script>
 </body>
 </html>
