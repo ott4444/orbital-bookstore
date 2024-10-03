@@ -17,6 +17,8 @@
     <div>
         <h3>{{ book_wrap.accessory.name }} - {{ book_wrap.color }}</h3>
         <p>Price: €{{ book_wrap.accessory.price }}</p>
+        <a href="{% url 'add_to_favorites' 'book_wrap' book_wrap.id %}">Add to Favorites</a>
+
 
         {% if user.is_authenticated %}
             <form method="POST" action="{% url 'add_to_cart' 'book_wrap' book_wrap.id %}">

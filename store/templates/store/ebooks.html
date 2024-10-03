@@ -59,6 +59,7 @@
                     <h4>{{ ebook.title }}</h4>
                     <p>by {{ ebook.author }}</p>
                     <p>€{{ ebook.price }}</p>
+                    <a href="{% url 'add_to_favorites' 'ebook' ebook.id %}">Add to Favorites</a>
                 </div>
             </a>
 

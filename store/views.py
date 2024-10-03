@@ -233,12 +233,6 @@ def add_review(request, book_id):
 
 
 @login_required
-def view_favorites(request):
-    favorites = Favorite.objects.filter(user=request.user)
-    return render(request, 'store/favorites.html', {'favorites': favorites})
-
-
-@login_required
 def view_reviews(request):
     reviews = Review.objects.filter(user=request.user)
     return render(request, 'store/reviews.html', {'reviews': reviews})
@@ -410,27 +404,40 @@ def ebook_detail(request, ebook_id):
 
 @login_required
 def add_to_favorites(request, item_type, item_id):
-    # Initialize item variable
+    # Fetch item based on type
     item = None
-
-    # Fetch the correct item based on the item_type
     if item_type == 'book':
-        item = get_object_or_404(Book, id=item_id)
+        item = Book.objects.get(id=item_id)
     elif item_type == 'ebook':
-        item = get_object_or_404(Ebook, id=item_id)
+        item = Ebook.objects.get(id=item_id)
+    elif item_type == 'book_wrap':
+        item = BookWrap.objects.get(id=item_id)
+    elif item_type == 'bookmark':
+        item = Bookmark.objects.get(id=item_id)
+    elif item_type == 'pencil':
+        item = Pencil.objects.get(id=item_id)
+    elif item_type == 'other':
+        item = Other.objects.get(id=item_id)
+    elif item_type == 'booklet_folder':
+        item = BookletFolder.objects.get(id=item_id)
 
-    # Check if the item exists in favorites and add it if not
     if item:
-        favorite, created = Favorite.objects.get_or_create(
-            user=request.user,
-            book=item if item_type == 'book' else None,
-            ebook=item if item_type == 'ebook' else None
-        )
-
+        # Add item to user's favorites
+        favorite, created = Favorite.objects.get_or_create(user=request.user, **{f'{item_type}': item})
         if created:
-            messages.success(request,
-                             f'{item.title if item_type == "book" else item.title} has been added to your favorites.')
+            messages.success(request, f"{getattr(item, 'title', getattr(item, 'name', 'Item'))} has been added to your favorites!")
         else:
-            messages.info(request, f'{item.title if item_type == "book" else item.title} is already in your favorites.')
+            messages.info(request, f"{getattr(item, 'title', getattr(item, 'name', 'Item'))} is already in your favorites.")
+    return redirect(request.META.get('HTTP_REFERER', 'home'))
 
-    return redirect('view_favorites')  # Redirect to the favorites page
+@login_required
+def view_favorites(request):
+    favorites = Favorite.objects.filter(user=request.user)
+    return render(request, 'store/favorites.html', {'favorites': favorites})
+
+@login_required
+def remove_from_favorites(request, favorite_id):
+    favorite = get_object_or_404(Favorite, id=favorite_id, user=request.user)
+    favorite.delete()
+    messages.success(request, 'Item removed from favorites.')
+    return redirect('view_favorites')

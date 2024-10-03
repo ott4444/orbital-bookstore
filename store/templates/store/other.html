@@ -18,6 +18,8 @@
                 <li>
                     <strong>{{ item.school_office.name }}</strong> - {{ item.description }}<br>
                     Price: €{{ item.price }}<br>
+                    <a href="{% url 'add_to_favorites' 'other' item.id %}">Add to Favorites</a>
+
                     {% if user.is_authenticated %}
                     <form method="POST" action="{% url 'add_to_cart' 'other' item.id %}">
                         {% csrf_token %}

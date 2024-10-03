@@ -5,6 +5,9 @@
 </head>
 <body>
 
+    <!-- Back to Book List -->
+    <p><a href="{% url 'home' %}">Back to Book List</a></p>
+
     <h1>{{ book.title }}</h1>
 
     <!-- Display the cover art using the URL stored in the 'cover_art' field -->
@@ -49,8 +52,7 @@
     </p>
     {% endif %}
 
-    <!-- Back to Book List -->
-    <p><a href="{% url 'home' %}">Back to Book List</a></p>
+
 
 </body>
 </html>

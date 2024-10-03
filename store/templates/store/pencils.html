@@ -18,6 +18,8 @@
                 <li>
                     <strong>{{ pencil.school_office.name }}</strong> - {{ pencil.pencil_type }}<br>
                     Price: €{{ pencil.price }}<br>
+                    <a href="{% url 'add_to_favorites' 'pencil' pencil.id %}">Add to Favorites</a>
+
 
                     <!-- Add to Cart Button -->
                     {% if user.is_authenticated %}

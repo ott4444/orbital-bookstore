@@ -19,10 +19,36 @@
     </form>
     {% endif %}
 
+     {% if user.is_authenticated %}
+    <p>
+        <a href="{% url 'add_to_favorites' 'ebook' ebook.id %}">Add to Favorites</a>
+    </p>
+    {% endif %}
+
     {% if ebook.cover_art %}
     <img src="{{ ebook.cover_art.url }}" alt="{{ ebook.title }} Cover Art" style="width: 200px;">
     {% else %}
     <p>No cover art available.</p>
+    {% endif %}
+
+    <h3>Reviews</h3>
+    <ul>
+        {% if reviews %}
+            {% for review in reviews %}
+            <li>
+                {{ review.user.username }}: {{ review.rating }} stars - {{ review.review_text }}
+            </li>
+            {% endfor %}
+        {% else %}
+            <li>No reviews yet.</li>
+        {% endif %}
+    </ul>
+
+    <!-- Write a Review Button (Only if user is logged in) -->
+    {% if user.is_authenticated %}
+    <p>
+        <a href="{% url 'add_review' ebook.id %}">Write a Review</a>
+    </p>
     {% endif %}
 
 

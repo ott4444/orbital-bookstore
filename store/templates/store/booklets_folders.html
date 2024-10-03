@@ -16,6 +16,8 @@
         <li>
             <h3>{{ booklet_folder.school_office.name }}</h3>
             <p>{{ booklet_folder.size }} - €{{ booklet_folder.price }}</p>
+            <a href="{% url 'add_to_favorites' 'booklet_folder' booklet_folder.id %}">Add to Favorites</a>
+
 
             {% if user.is_authenticated %}
             <form method="POST" action="{% url 'add_to_cart' 'booklet_folder' booklet_folder.id %}">

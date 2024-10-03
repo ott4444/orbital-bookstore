@@ -149,9 +149,20 @@ class Review(models.Model):
 
 
 class Favorite(models.Model):
-    fav_rating = models.IntegerField(default=1)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    book = models.ForeignKey(Book, on_delete=models.CASCADE)
+    book = models.ForeignKey(Book, on_delete=models.CASCADE, blank=True, null=True)
+    ebook = models.ForeignKey(Ebook, on_delete=models.CASCADE, blank=True, null=True)
+    book_wrap = models.ForeignKey(BookWrap, on_delete=models.CASCADE, blank=True, null=True)
+    bookmark = models.ForeignKey(Bookmark, on_delete=models.CASCADE, blank=True, null=True)
+    pencil = models.ForeignKey(Pencil, on_delete=models.CASCADE, blank=True, null=True)
+    other = models.ForeignKey(Other, on_delete=models.CASCADE, blank=True, null=True)
+    booklet_folder = models.ForeignKey(BookletFolder, on_delete=models.CASCADE, blank=True, null=True)
+    fav_rating = models.IntegerField(default=1)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"{self.user.username}'s favorite: {self.book or self.ebook or self.book_wrap or self.bookmark or self.pencil or self.other or self.booklet_folder}"
+
 
 
 class Cart(models.Model):
