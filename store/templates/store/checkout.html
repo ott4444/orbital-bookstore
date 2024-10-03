@@ -64,6 +64,9 @@
     </style>
 </head>
 <body>
+
+    <a href="{% url 'view_cart' %}">Back to Cart</a>
+
     <h1>Checkout</h1>
 
     <form method="POST" action="{% url 'checkout' %}">
@@ -175,8 +178,6 @@
         <button type="submit">Place Order</button>
     </form>
 
-    <br>
-    <a href="{% url 'view_cart' %}">Back to Cart</a>
 
     <!-- JavaScript to Toggle Delivery Fields -->
     <script>

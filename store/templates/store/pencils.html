@@ -4,6 +4,11 @@
     <title>Pencils</title>
 </head>
 <body>
+
+    <a href="{% url 'home' %}">Back to Home</a>
+    <br>
+    <a href="{% url 'school_and_office' %}">Back to School and Office</a>
+
     <h1>Pencils</h1>
     <p>Browse our collection of pencils.</p>
 
@@ -28,8 +33,5 @@
         <p>No pencils found.</p>
     {% endif %}
 
-    <a href="{% url 'school_and_office' %}">Back to School and Office</a>
-    <br>
-    <a href="{% url 'home' %}">Back to Home</a>
 </body>
 </html>

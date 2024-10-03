@@ -4,6 +4,11 @@
     <title>Bookmarks</title>
 </head>
 <body>
+
+    <a href="{% url 'home' %}">Back to Home</a>
+    <br>
+    <a href="{% url 'accessories' %}">Back to Accessories</a>
+
     <h1>Bookmarks</h1>
     <p>Explore our Bookmark collection.</p>
 
@@ -23,8 +28,5 @@
     {% endfor %}
     </ul>
 
-    <a href="{% url 'accessories' %}">Back to Accessories</a>
-    <br>
-    <a href="{% url 'home' %}">Back to Home</a>
 </body>
 </html>

@@ -4,6 +4,10 @@
     <title>Book Wraps</title>
 </head>
 <body>
+     <a href="{% url 'home' %}">Back to Home</a>
+     <br>
+     <a href="{% url 'accessories' %}">Back to Accessories</a>
+
     <h1>Book Wraps</h1>
     <p>Browse our collection of book wraps.</p>
     <p>Book Wrap ID: {{ book_wrap.id }}</p>
@@ -24,8 +28,5 @@
 {% endfor %}
 
 
-    <a href="{% url 'accessories' %}">Back to Accessories</a>
-    <br>
-    <a href="{% url 'home' %}">Back to Home</a>
 </body>
 </html>

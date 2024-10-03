@@ -4,6 +4,10 @@
     <title>Booklets/Folders</title>
 </head>
 <body>
+      <a href="{% url 'home' %}">Back to Home</a>
+      <br>
+      <a href="{% url 'school_and_office' %}">Back to School and Office</a>
+
     <h1>Booklets/Folders</h1>
     <p>Find our selection of booklets and folders.</p>
 
@@ -23,8 +27,5 @@
     {% endfor %}
     </ul>
 
-    <a href="{% url 'school_and_office' %}">Back to School and Office</a>
-    <br>
-    <a href="{% url 'home' %}">Back to Home</a>
 </body>
 </html>

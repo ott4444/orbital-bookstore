@@ -1,33 +1,85 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Books</title>
+    <title>Books List</title>
+    <style>
+        /* Styling for the overall container */
+        .item-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            list-style-type: none;
+            padding: 0;
+            justify-content: center;
+        }
+
+        /* Styling for each item (book) */
+        .item {
+            width: calc(25% - 15px); /* Adjusts the width of each item */
+            min-width: 200px; /* Minimum width for smaller screens */
+            border: 1px solid #ddd;
+            padding: 10px;
+            box-sizing: border-box;
+            text-align: center;
+        }
+
+        /* Image size settings for book cover */
+        .item-cover {
+            width: 100%;
+            height: auto;
+            max-height: 200px; /* Restrict max height for the image */
+            object-fit: cover;
+        }
+
+        /* Additional info under each book */
+        .item-info {
+            margin-top: 10px;
+        }
+
+        /* Responsive design for smaller screens */
+        @media (max-width: 768px) {
+            .item {
+                width: calc(50% - 10px); /* Two items per row on smaller screens */
+            }
+        }
+    </style>
 </head>
 <body>
+
     <a href="{% url 'home' %}" class="back-home">Back to Home</a>
+
     <h1>Books</h1>
-    <p>Explore our collection of books.</p>
-    <ul>
-        {% if books %}
-            {% for book in books %}
-            <li>
-                <a href="{% url 'book_detail' book.id %}">
-                    <img src="{{ book.cover_art.url }}" alt="{{ book.title }} Cover art" style="width: 200px;">
-                    <h3>{{ book.title }}</h3>
+    <p>Explore our collection of Books.</p>
+
+    <!-- Display a list of books if available -->
+    {% if books %}
+    <ul class="item-list">
+        {% for book in books %}
+        <li class="item">
+            <a href="{% url 'book_detail' book.id %}">
+                <img src="{{ book.cover_art.url }}" alt="{{ book.title }} Cover Art" class="item-cover">
+                <div class="item-info">
+                    <h4>{{ book.title }}</h4>
                     <p>by {{ book.author }}</p>
                     <p>€{{ book.price }}</p>
-                </a>
-                {% if user.is_authenticated %}
-                        <form method="POST" action="{% url 'add_to_cart' 'book' book.id %}">
-                            {% csrf_token %}
-                            <button type="submit">Add to Cart</button>
-                        </form>
-                {% endif %}
-            </li>
-            {% endfor %}
-        {% else %}
-            <p>No books found.</p>
-        {% endif %}
+                </div>
+            </a>
+
+            <!-- Add to Cart Button (only for logged-in users) -->
+            {% if user.is_authenticated %}
+            <div class="add-to-cart">
+                <form method="POST" action="{% url 'add_to_cart' 'book' book.id %}">
+                    {% csrf_token %}
+                    <button type="submit">Add to Cart</button>
+                </form>
+            </div>
+            {% endif %}
+        </li>
+        {% endfor %}
     </ul>
+    {% else %}
+        <p>No books available at the moment.</p>
+    {% endif %}
+
 </body>
 </html>
