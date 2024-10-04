@@ -45,14 +45,15 @@
         {% endif %}
     </ul>
 
-    <!-- Write a Review Button (Only if user is logged in) -->
+<!-- Write a Review -->
     {% if user.is_authenticated %}
-    <p>
-        <a href="{% url 'add_review' book.id %}">Write a Review</a>
-    </p>
+        <h3>Add a Review</h3>
+        <form method="POST">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Submit Review</button>
+        </form>
     {% endif %}
-
-
 
 </body>
 </html>

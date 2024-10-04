@@ -5,13 +5,17 @@
 </head>
 <body>
 
+    <!-- Back to E-books link -->
     <a href="{% url 'ebooks' %}" class="back-ebooks">Back to E-books</a>
 
+
+    <!-- Ebook details -->
     <h1>{{ ebook.title }}</h1>
     <p><strong>Author:</strong> {{ ebook.author }}</p>
     <p><strong>Description:</strong> {{ ebook.description }}</p>
     <p><strong>Price:</strong> €{{ ebook.price }}</p>
 
+    <!-- Add to Cart functionality -->
     {% if ebook.availability %}
     <form method="POST" action="{% url 'add_to_cart' 'ebook' ebook.id %}">
         {% csrf_token %}
@@ -19,18 +23,21 @@
     </form>
     {% endif %}
 
-     {% if user.is_authenticated %}
+    <!-- Add to Favorites functionality -->
+    {% if user.is_authenticated %}
     <p>
         <a href="{% url 'add_to_favorites' 'ebook' ebook.id %}">Add to Favorites</a>
     </p>
     {% endif %}
 
+    <!-- Display cover art if available -->
     {% if ebook.cover_art %}
     <img src="{{ ebook.cover_art.url }}" alt="{{ ebook.title }} Cover Art" style="width: 200px;">
     {% else %}
     <p>No cover art available.</p>
     {% endif %}
 
+    <!-- Review section -->
     <h3>Reviews</h3>
     <ul>
         {% if reviews %}
@@ -44,14 +51,15 @@
         {% endif %}
     </ul>
 
-    <!-- Write a Review Button (Only if user is logged in) -->
+    <!-- Write a Review form (only if logged in) -->
     {% if user.is_authenticated %}
-    <p>
-        <a href="{% url 'add_review' ebook.id %}">Write a Review</a>
-    </p>
+        <h3>Add a Review</h3>
+        <form method="POST">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Submit Review</button>
+        </form>
     {% endif %}
-
-
 
 </body>
 </html>

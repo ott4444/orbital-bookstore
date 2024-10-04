@@ -8,6 +8,9 @@ from django.contrib.auth import get_user_model
 from django.contrib.auth.hashers import make_password
 from .models import Book, Ebook, Accessory, BookWrap, Bookmark, SchoolOffice, BookletFolder, Pencil, Other, Cart, Order, Favorite, Review
 from django import forms
+from .models import Review
+from .forms import ReviewForm
+
 
 
 User = get_user_model()
@@ -21,8 +24,24 @@ def home(request):
 def book_detail(request, book_id):
     book = get_object_or_404(Book, id=book_id)
     reviews = Review.objects.filter(book=book)
-    return render(request, 'store/book_detail.html', {'book': book, 'reviews': reviews})
 
+    if request.method == 'POST':
+        form = ReviewForm(request.POST)
+        if form.is_valid():
+            review = form.save(commit=False)
+            review.user = request.user
+            review.book = book
+            review.save()
+            messages.success(request, 'Your review has been added.')
+            return redirect('book_detail', book_id=book.id)
+    else:
+        form = ReviewForm()
+
+    return render(request, 'store/book_detail.html', {
+        'book': book,
+        'reviews': reviews,
+        'form': form
+    })
 
 def register(request):
     if request.method == 'POST':
@@ -398,8 +417,22 @@ def ebooks_view(request):
 
 
 def ebook_detail(request, ebook_id):
-    ebook = get_object_or_404(Ebook, id=ebook_id)  # Fetch the e-book or return a 404 error
-    return render(request, 'store/e-book_details.html', {'ebook': ebook})
+    ebook = get_object_or_404(Ebook, id=ebook_id)
+    reviews = Review.objects.filter(ebook=ebook)
+    form = ReviewForm(request.POST or None)
+
+    if request.method == 'POST' and form.is_valid():
+        review = form.save(commit=False)
+        review.user = request.user
+        review.ebook = ebook
+        review.save()
+        return redirect('ebook_detail', ebook_id=ebook_id)
+
+    return render(request, 'store/ebook_details.html', {
+        'ebook': ebook,
+        'reviews': reviews,
+        'form': form,
+    })
 
 
 @login_required

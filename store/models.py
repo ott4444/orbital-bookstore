@@ -141,11 +141,15 @@ class Other(models.Model):
 
 
 class Review(models.Model):
-    book = models.ForeignKey(Book, on_delete=models.CASCADE)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
+    book = models.ForeignKey('Book', on_delete=models.CASCADE, blank=True, null=True)
+    ebook = models.ForeignKey('Ebook', on_delete=models.CASCADE, blank=True, null=True)
     rating = models.IntegerField()
     review_text = models.TextField(blank=True, null=True)
     review_date = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"{self.user.username}'s review on {self.book or self.ebook}"
 
 
 class Favorite(models.Model):
