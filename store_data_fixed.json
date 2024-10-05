@@ -1,0 +1,1236 @@
+[
+{
+    "model": "store.user",
+    "pk": 1,
+    "fields": {
+        "password": "pbkdf2_sha256$870000$TOHzFuqdJKaisKmkA496B1$ufqPHFqK+IH3fklMLYXzJx+YlKzY82oaubr0IDk+8Ew=",
+        "last_login": "2024-09-24T18:58:37.650Z",
+        "is_superuser": true,
+        "username": "kasutaja",
+        "is_staff": true,
+        "date_joined": "2024-09-23T20:07:18.462Z",
+        "profile_name": null,
+        "email": "ott4004@gmail.com",
+        "first_name": null,
+        "last_name": null,
+        "is_active": true,
+        "is_admin": false,
+        "order_history": null,
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "store.category",
+    "pk": 1,
+    "fields": {
+        "name": "Krimi"
+    }
+},
+{
+    "model": "store.category",
+    "pk": 2,
+    "fields": {
+        "name": "Drama"
+    }
+},
+{
+    "model": "store.category",
+    "pk": 3,
+    "fields": {
+        "name": "Ponevik"
+    }
+},
+{
+    "model": "store.category",
+    "pk": 4,
+    "fields": {
+        "name": "Ajalugu"
+    }
+},
+{
+    "model": "store.category",
+    "pk": 5,
+    "fields": {
+        "name": "Lastele"
+    }
+},
+{
+    "model": "store.category",
+    "pk": 6,
+    "fields": {
+        "name": "Muinasjutud"
+    }
+},
+{
+    "model": "store.subcategory",
+    "pk": 1,
+    "fields": {
+        "name": "Noortele",
+        "category": 1
+    }
+},
+{
+    "model": "store.subcategory",
+    "pk": 2,
+    "fields": {
+        "name": "Ajalugu",
+        "category": 4
+    }
+},
+{
+    "model": "store.subcategory",
+    "pk": 3,
+    "fields": {
+        "name": "Muinasjutud",
+        "category": 6
+    }
+},
+{
+    "model": "store.book",
+    "pk": 3,
+    "fields": {
+        "title": "Syndikaat",
+        "author": "Roland Tamm",
+        "description": "Endise kaitsepolitseiniku ponev lugu varjatud syndmustest joustruktuurides. Ongi koik, motles Max, kui oma kabinetti tagasi joudis. Ta vottis tyhjast seifist ainsad sinna veel jaanud asjad ja pooliku konjakipudeli, isikliku Sig Saueri, millele oli graveeritud Aasta kaitsepolitseinik 2002, politseikoloneli pagunid. Pani need enda ette lauale ja ryypas pudelist suure soomu. Ta tundis end nagu filmis, kus filmilint kerib sellise kiirusega, et sekundi murdosa jooksul vilksatavad kaadris yksteise jarel koik viimase 28 aasta syndmused  Politseiakadeemia, interrinne, Ida-Virumaa joukude arveteklaarimised, Teabeamet, Kollane maja, islamiterrorismi oht  Roland Tamme debyytromaan Syndikaat heidab poneva pilgu Eesti lahiajaloole ja joustruktuurides toimunule labi kaitsepolitseinik Maxi silmade. Olgugi et tegelased ja syndmused selles loos on valja moeldud, ei kahtle lugeja, et just nii vois koik olla ka tegelikult.",
+        "cover_art": "book_covers/syndikaat.jpg",
+        "price": "24.65",
+        "availability": true,
+        "download_link": "https://www.apollo.ee/sundikaat.html",
+        "category": 3,
+        "subcategory": 2
+    }
+},
+{
+    "model": "store.book",
+    "pk": 4,
+    "fields": {
+        "title": "Loomamuinasjutud lastele",
+        "author": "Manuela Guaccio",
+        "description": "\"Imekenade illustratsioonidega raamatus rullub lahti ponev ja volujoudu tais muinasjutu- ja valmimaailm, mis pakub lugemislusti pikaks ajaks. Sellest raamatust leiad yheksa lyhiversiooni muinasjuttudest ja valmidest, mille autorid on naiteks Hans Christian Andersen, vennad Grimmid ja kuulus valmimeister Aisopos. Loe kaasakiskuvaid lugusid hirve tarkusest ja ettevaatlikkusest, krabi onnelikust paasemisest ja Bremeni linna moosekantidest.\r\nLabi valmimaailma opib laps tundma elutarkusi.\r\n\"",
+        "cover_art": "book_covers/Looma_muinasjutud.jpg",
+        "price": "6.99",
+        "availability": true,
+        "download_link": "https://www.apollo.ee/loomamuinasjutud-lastele.html",
+        "category": 5,
+        "subcategory": 3
+    }
+},
+{
+    "model": "store.ebook",
+    "pk": 1,
+    "fields": {
+        "title": "Mina olin siin",
+        "author": "Sass Henno",
+        "description": "yhelt poolt on see lugu noortest, kes elavad valjaspool kehtivaid seadusi, kaibetodesid ja moraalinorme. Teiselt poolt on see yhe poisi ylestunnistus syndmustest, mis on jaanud piisavalt kaugele, et neid saaks valutult jutustada.\r\n\r\nSass Henno Mina olin siin voitis 2004. aastal romaanivoistluse ja saavutas ilmudes kohe lugejate tulise poolehoiu. Toona nimetas yks kriitikuist autorit tuleviku klassikuks. Nyyd on see tulevik kaes. 2007. aastal valmis romaani pohjal mangufilm ja juba peaaegu 20 aastat kuulub Mina olin siin soovitusliku koolikirjanduse nimekirja.",
+        "cover_art": "ebooks/mina_olin_siin.png",
+        "price": "19.99",
+        "availability": true,
+        "download_link": "https://rahvaraamat.ee/p/mina-olin-siin/1656055/et?isbn=9789916140758"
+    }
+},
+{
+    "model": "store.ebook",
+    "pk": 2,
+    "fields": {
+        "title": "Ulos Ikkunasta",
+        "author": "Scribe, Eugene, 1791-1861",
+        "description": "Huvinaytelma 1:ssa naytoksessa",
+        "cover_art": "ebooks/ulos_ikkunasta.jpg",
+        "price": "5.50",
+        "availability": true,
+        "download_link": "https://gutenberg.org/ebooks/74464"
+    }
+},
+{
+    "model": "store.accessory",
+    "pk": 1,
+    "fields": {
+        "name": "Raamatu kaas pehme",
+        "description": "Pehme plast kaas",
+        "price": "2.00",
+        "availability": true
+    }
+},
+{
+    "model": "store.accessory",
+    "pk": 2,
+    "fields": {
+        "name": "Raamatu kaas kova",
+        "description": "Kovast materjalist kaitse kaaned",
+        "price": "4.00",
+        "availability": true
+    }
+},
+{
+    "model": "store.accessory",
+    "pk": 3,
+    "fields": {
+        "name": "Dollar",
+        "description": "JARJEHOIDJA MILLION DOLLAR",
+        "price": "4.99",
+        "availability": true
+    }
+},
+{
+    "model": "store.accessory",
+    "pk": 4,
+    "fields": {
+        "name": "Cats",
+        "description": "Magnet bookmarks",
+        "price": "3.99",
+        "availability": true
+    }
+},
+{
+    "model": "store.bookwrap",
+    "pk": 1,
+    "fields": {
+        "accessory": 1,
+        "color": "Red",
+        "price": "2.00",
+        "availability": true
+    }
+},
+{
+    "model": "store.bookwrap",
+    "pk": 2,
+    "fields": {
+        "accessory": 2,
+        "color": "Green",
+        "price": "4.00",
+        "availability": true
+    }
+},
+{
+    "model": "store.bookmark",
+    "pk": 1,
+    "fields": {
+        "accessory": 3,
+        "design": "Million Dollar",
+        "price": "4.99",
+        "availability": true
+    }
+},
+{
+    "model": "store.bookmark",
+    "pk": 2,
+    "fields": {
+        "accessory": 4,
+        "design": "Cats",
+        "price": "3.99",
+        "availability": true
+    }
+},
+{
+    "model": "store.schooloffice",
+    "pk": 1,
+    "fields": {
+        "name": "Pen",
+        "description": "Pastapliiats",
+        "price": "2.00",
+        "availability": true
+    }
+},
+{
+    "model": "store.schooloffice",
+    "pk": 2,
+    "fields": {
+        "name": "Ballpoint pen",
+        "description": "Pastapliiats",
+        "price": "2.00",
+        "availability": true
+    }
+},
+{
+    "model": "store.schooloffice",
+    "pk": 3,
+    "fields": {
+        "name": "Vihik",
+        "description": "vihik jooneline",
+        "price": "0.50",
+        "availability": true
+    }
+},
+{
+    "model": "store.schooloffice",
+    "pk": 4,
+    "fields": {
+        "name": "Kaustik",
+        "description": "Folder",
+        "price": "2.50",
+        "availability": true
+    }
+},
+{
+    "model": "store.schooloffice",
+    "pk": 5,
+    "fields": {
+        "name": "Scissors",
+        "description": "Kaarid",
+        "price": "3.00",
+        "availability": true
+    }
+},
+{
+    "model": "store.schooloffice",
+    "pk": 6,
+    "fields": {
+        "name": "paper clips",
+        "description": "kirja klambrid",
+        "price": "3.50",
+        "availability": true
+    }
+},
+{
+    "model": "store.bookletfolder",
+    "pk": 1,
+    "fields": {
+        "school_office": 3,
+        "size": "20x30",
+        "price": "0.50",
+        "availability": true
+    }
+},
+{
+    "model": "store.bookletfolder",
+    "pk": 2,
+    "fields": {
+        "school_office": 4,
+        "size": "30x40",
+        "price": "2.50",
+        "availability": true
+    }
+},
+{
+    "model": "store.pencil",
+    "pk": 1,
+    "fields": {
+        "school_office": 1,
+        "pencil_type": "Harilik pliiats",
+        "price": "1.00",
+        "availability": true
+    }
+},
+{
+    "model": "store.pencil",
+    "pk": 2,
+    "fields": {
+        "school_office": 2,
+        "pencil_type": "Pastapliiats",
+        "price": "2.00",
+        "availability": true
+    }
+},
+{
+    "model": "store.other",
+    "pk": 1,
+    "fields": {
+        "school_office": 5,
+        "description": "vaikesed kaarid",
+        "price": "3.00",
+        "availability": true
+    }
+},
+{
+    "model": "store.other",
+    "pk": 2,
+    "fields": {
+        "school_office": 6,
+        "description": "kirja klambrid",
+        "price": "3.50",
+        "availability": true
+    }
+},
+{
+    "model": "store.order",
+    "pk": 4,
+    "fields": {
+        "user": 1,
+        "order_date": "2024-09-29T14:38:33.315Z",
+        "book": null,
+        "ebook": 2,
+        "accessory": null,
+        "pencil": null,
+        "other": null,
+        "book_wrap": null,
+        "bookmark": null,
+        "booklet_folder": null,
+        "school_office": null,
+        "price": "5.50",
+        "quantity": 3,
+        "total_cost": "16.50",
+        "status": "Pending",
+        "payment_method": "Credit Card",
+        "payment_status": "Unpaid",
+        "delivery_email": "ott4004@gmail.com",
+        "email_sent_date": null,
+        "download_link": null,
+        "download_expiry_date": null
+    }
+},
+{
+    "model": "store.order",
+    "pk": 5,
+    "fields": {
+        "user": 1,
+        "order_date": "2024-09-29T14:38:33.319Z",
+        "book": null,
+        "ebook": 1,
+        "accessory": null,
+        "pencil": null,
+        "other": null,
+        "book_wrap": null,
+        "bookmark": null,
+        "booklet_folder": null,
+        "school_office": null,
+        "price": "19.99",
+        "quantity": 2,
+        "total_cost": "39.98",
+        "status": "Pending",
+        "payment_method": "Credit Card",
+        "payment_status": "Unpaid",
+        "delivery_email": "ott4004@gmail.com",
+        "email_sent_date": null,
+        "download_link": null,
+        "download_expiry_date": null
+    }
+},
+{
+    "model": "store.order",
+    "pk": 6,
+    "fields": {
+        "user": 1,
+        "order_date": "2024-09-29T15:53:41.574Z",
+        "book": null,
+        "ebook": 1,
+        "accessory": null,
+        "pencil": null,
+        "other": null,
+        "book_wrap": null,
+        "bookmark": null,
+        "booklet_folder": null,
+        "school_office": null,
+        "price": "19.99",
+        "quantity": 3,
+        "total_cost": "59.97",
+        "status": "Pending",
+        "payment_method": "Credit Card",
+        "payment_status": "Unpaid",
+        "delivery_email": "ott4004@gmail.com",
+        "email_sent_date": null,
+        "download_link": null,
+        "download_expiry_date": null
+    }
+},
+{
+    "model": "store.order",
+    "pk": 7,
+    "fields": {
+        "user": 1,
+        "order_date": "2024-10-01T13:57:49.673Z",
+        "book": null,
+        "ebook": null,
+        "accessory": null,
+        "pencil": 2,
+        "other": null,
+        "book_wrap": null,
+        "bookmark": null,
+        "booklet_folder": null,
+        "school_office": null,
+        "price": "2.00",
+        "quantity": 1,
+        "total_cost": "2.00",
+        "status": "Pending",
+        "payment_method": "Credit Card",
+        "payment_status": "Unpaid",
+        "delivery_email": "ott4004@gmail.com",
+        "email_sent_date": null,
+        "download_link": null,
+        "download_expiry_date": null
+    }
+},
+{
+    "model": "store.order",
+    "pk": 8,
+    "fields": {
+        "user": 1,
+        "order_date": "2024-10-01T13:57:49.703Z",
+        "book": null,
+        "ebook": null,
+        "accessory": null,
+        "pencil": 1,
+        "other": null,
+        "book_wrap": null,
+        "bookmark": null,
+        "booklet_folder": null,
+        "school_office": null,
+        "price": "1.00",
+        "quantity": 1,
+        "total_cost": "1.00",
+        "status": "Pending",
+        "payment_method": "Credit Card",
+        "payment_status": "Unpaid",
+        "delivery_email": "ott4004@gmail.com",
+        "email_sent_date": null,
+        "download_link": null,
+        "download_expiry_date": null
+    }
+},
+{
+    "model": "store.order",
+    "pk": 9,
+    "fields": {
+        "user": 1,
+        "order_date": "2024-10-01T13:57:49.706Z",
+        "book": null,
+        "ebook": 1,
+        "accessory": null,
+        "pencil": null,
+        "other": null,
+        "book_wrap": null,
+        "bookmark": null,
+        "booklet_folder": null,
+        "school_office": null,
+        "price": "19.99",
+        "quantity": 1,
+        "total_cost": "19.99",
+        "status": "Pending",
+        "payment_method": "Credit Card",
+        "payment_status": "Unpaid",
+        "delivery_email": "ott4004@gmail.com",
+        "email_sent_date": null,
+        "download_link": null,
+        "download_expiry_date": null
+    }
+},
+{
+    "model": "store.order",
+    "pk": 10,
+    "fields": {
+        "user": 1,
+        "order_date": "2024-10-01T13:57:49.721Z",
+        "book": null,
+        "ebook": 2,
+        "accessory": null,
+        "pencil": null,
+        "other": null,
+        "book_wrap": null,
+        "bookmark": null,
+        "booklet_folder": null,
+        "school_office": null,
+        "price": "5.50",
+        "quantity": 1,
+        "total_cost": "5.50",
+        "status": "Pending",
+        "payment_method": "Credit Card",
+        "payment_status": "Unpaid",
+        "delivery_email": "ott4004@gmail.com",
+        "email_sent_date": null,
+        "download_link": null,
+        "download_expiry_date": null
+    }
+},
+{
+    "model": "store.order",
+    "pk": 11,
+    "fields": {
+        "user": 1,
+        "order_date": "2024-10-01T13:57:49.723Z",
+        "book": 3,
+        "ebook": null,
+        "accessory": null,
+        "pencil": null,
+        "other": null,
+        "book_wrap": null,
+        "bookmark": null,
+        "booklet_folder": null,
+        "school_office": null,
+        "price": "24.65",
+        "quantity": 1,
+        "total_cost": "24.65",
+        "status": "Pending",
+        "payment_method": "Credit Card",
+        "payment_status": "Unpaid",
+        "delivery_email": "ott4004@gmail.com",
+        "email_sent_date": null,
+        "download_link": null,
+        "download_expiry_date": null
+    }
+},
+{
+    "model": "store.order",
+    "pk": 12,
+    "fields": {
+        "user": 1,
+        "order_date": "2024-10-01T13:57:49.738Z",
+        "book": 4,
+        "ebook": null,
+        "accessory": null,
+        "pencil": null,
+        "other": null,
+        "book_wrap": null,
+        "bookmark": null,
+        "booklet_folder": null,
+        "school_office": null,
+        "price": "6.99",
+        "quantity": 1,
+        "total_cost": "6.99",
+        "status": "Pending",
+        "payment_method": "Credit Card",
+        "payment_status": "Unpaid",
+        "delivery_email": "ott4004@gmail.com",
+        "email_sent_date": null,
+        "download_link": null,
+        "download_expiry_date": null
+    }
+},
+{
+    "model": "store.order",
+    "pk": 13,
+    "fields": {
+        "user": 1,
+        "order_date": "2024-10-01T13:57:49.740Z",
+        "book": null,
+        "ebook": null,
+        "accessory": null,
+        "pencil": null,
+        "other": null,
+        "book_wrap": 1,
+        "bookmark": null,
+        "booklet_folder": null,
+        "school_office": null,
+        "price": "2.00",
+        "quantity": 1,
+        "total_cost": "2.00",
+        "status": "Pending",
+        "payment_method": "Credit Card",
+        "payment_status": "Unpaid",
+        "delivery_email": "ott4004@gmail.com",
+        "email_sent_date": null,
+        "download_link": null,
+        "download_expiry_date": null
+    }
+},
+{
+    "model": "store.order",
+    "pk": 14,
+    "fields": {
+        "user": 1,
+        "order_date": "2024-10-01T13:57:49.751Z",
+        "book": null,
+        "ebook": null,
+        "accessory": null,
+        "pencil": null,
+        "other": null,
+        "book_wrap": 2,
+        "bookmark": null,
+        "booklet_folder": null,
+        "school_office": null,
+        "price": "4.00",
+        "quantity": 1,
+        "total_cost": "4.00",
+        "status": "Pending",
+        "payment_method": "Credit Card",
+        "payment_status": "Unpaid",
+        "delivery_email": "ott4004@gmail.com",
+        "email_sent_date": null,
+        "download_link": null,
+        "download_expiry_date": null
+    }
+},
+{
+    "model": "store.order",
+    "pk": 15,
+    "fields": {
+        "user": 1,
+        "order_date": "2024-10-01T13:57:49.757Z",
+        "book": null,
+        "ebook": null,
+        "accessory": null,
+        "pencil": null,
+        "other": null,
+        "book_wrap": null,
+        "bookmark": null,
+        "booklet_folder": 1,
+        "school_office": null,
+        "price": "0.50",
+        "quantity": 1,
+        "total_cost": "0.50",
+        "status": "Pending",
+        "payment_method": "Credit Card",
+        "payment_status": "Unpaid",
+        "delivery_email": "ott4004@gmail.com",
+        "email_sent_date": null,
+        "download_link": null,
+        "download_expiry_date": null
+    }
+},
+{
+    "model": "store.order",
+    "pk": 16,
+    "fields": {
+        "user": 1,
+        "order_date": "2024-10-01T13:57:49.767Z",
+        "book": null,
+        "ebook": null,
+        "accessory": null,
+        "pencil": null,
+        "other": null,
+        "book_wrap": null,
+        "bookmark": null,
+        "booklet_folder": 2,
+        "school_office": null,
+        "price": "2.50",
+        "quantity": 1,
+        "total_cost": "2.50",
+        "status": "Pending",
+        "payment_method": "Credit Card",
+        "payment_status": "Unpaid",
+        "delivery_email": "ott4004@gmail.com",
+        "email_sent_date": null,
+        "download_link": null,
+        "download_expiry_date": null
+    }
+},
+{
+    "model": "store.order",
+    "pk": 17,
+    "fields": {
+        "user": 1,
+        "order_date": "2024-10-01T13:58:29.144Z",
+        "book": null,
+        "ebook": null,
+        "accessory": null,
+        "pencil": 2,
+        "other": null,
+        "book_wrap": null,
+        "bookmark": null,
+        "booklet_folder": null,
+        "school_office": null,
+        "price": "2.00",
+        "quantity": 1,
+        "total_cost": "2.00",
+        "status": "Pending",
+        "payment_method": "Credit Card",
+        "payment_status": "Unpaid",
+        "delivery_email": "ott4004@gmail.com",
+        "email_sent_date": null,
+        "download_link": null,
+        "download_expiry_date": null
+    }
+},
+{
+    "model": "store.order",
+    "pk": 18,
+    "fields": {
+        "user": 1,
+        "order_date": "2024-10-01T13:58:29.160Z",
+        "book": null,
+        "ebook": null,
+        "accessory": null,
+        "pencil": 1,
+        "other": null,
+        "book_wrap": null,
+        "bookmark": null,
+        "booklet_folder": null,
+        "school_office": null,
+        "price": "1.00",
+        "quantity": 1,
+        "total_cost": "1.00",
+        "status": "Pending",
+        "payment_method": "Credit Card",
+        "payment_status": "Unpaid",
+        "delivery_email": "ott4004@gmail.com",
+        "email_sent_date": null,
+        "download_link": null,
+        "download_expiry_date": null
+    }
+},
+{
+    "model": "store.order",
+    "pk": 19,
+    "fields": {
+        "user": 1,
+        "order_date": "2024-10-01T13:58:29.169Z",
+        "book": null,
+        "ebook": 1,
+        "accessory": null,
+        "pencil": null,
+        "other": null,
+        "book_wrap": null,
+        "bookmark": null,
+        "booklet_folder": null,
+        "school_office": null,
+        "price": "19.99",
+        "quantity": 1,
+        "total_cost": "19.99",
+        "status": "Pending",
+        "payment_method": "Credit Card",
+        "payment_status": "Unpaid",
+        "delivery_email": "ott4004@gmail.com",
+        "email_sent_date": null,
+        "download_link": null,
+        "download_expiry_date": null
+    }
+},
+{
+    "model": "store.order",
+    "pk": 20,
+    "fields": {
+        "user": 1,
+        "order_date": "2024-10-01T13:58:29.176Z",
+        "book": null,
+        "ebook": 2,
+        "accessory": null,
+        "pencil": null,
+        "other": null,
+        "book_wrap": null,
+        "bookmark": null,
+        "booklet_folder": null,
+        "school_office": null,
+        "price": "5.50",
+        "quantity": 1,
+        "total_cost": "5.50",
+        "status": "Pending",
+        "payment_method": "Credit Card",
+        "payment_status": "Unpaid",
+        "delivery_email": "ott4004@gmail.com",
+        "email_sent_date": null,
+        "download_link": null,
+        "download_expiry_date": null
+    }
+},
+{
+    "model": "store.order",
+    "pk": 21,
+    "fields": {
+        "user": 1,
+        "order_date": "2024-10-01T13:58:29.181Z",
+        "book": 3,
+        "ebook": null,
+        "accessory": null,
+        "pencil": null,
+        "other": null,
+        "book_wrap": null,
+        "bookmark": null,
+        "booklet_folder": null,
+        "school_office": null,
+        "price": "24.65",
+        "quantity": 1,
+        "total_cost": "24.65",
+        "status": "Pending",
+        "payment_method": "Credit Card",
+        "payment_status": "Unpaid",
+        "delivery_email": "ott4004@gmail.com",
+        "email_sent_date": null,
+        "download_link": null,
+        "download_expiry_date": null
+    }
+},
+{
+    "model": "store.order",
+    "pk": 22,
+    "fields": {
+        "user": 1,
+        "order_date": "2024-10-01T13:58:29.187Z",
+        "book": 4,
+        "ebook": null,
+        "accessory": null,
+        "pencil": null,
+        "other": null,
+        "book_wrap": null,
+        "bookmark": null,
+        "booklet_folder": null,
+        "school_office": null,
+        "price": "6.99",
+        "quantity": 1,
+        "total_cost": "6.99",
+        "status": "Pending",
+        "payment_method": "Credit Card",
+        "payment_status": "Unpaid",
+        "delivery_email": "ott4004@gmail.com",
+        "email_sent_date": null,
+        "download_link": null,
+        "download_expiry_date": null
+    }
+},
+{
+    "model": "store.order",
+    "pk": 23,
+    "fields": {
+        "user": 1,
+        "order_date": "2024-10-01T13:58:29.193Z",
+        "book": null,
+        "ebook": null,
+        "accessory": null,
+        "pencil": null,
+        "other": null,
+        "book_wrap": 1,
+        "bookmark": null,
+        "booklet_folder": null,
+        "school_office": null,
+        "price": "2.00",
+        "quantity": 1,
+        "total_cost": "2.00",
+        "status": "Pending",
+        "payment_method": "Credit Card",
+        "payment_status": "Unpaid",
+        "delivery_email": "ott4004@gmail.com",
+        "email_sent_date": null,
+        "download_link": null,
+        "download_expiry_date": null
+    }
+},
+{
+    "model": "store.order",
+    "pk": 24,
+    "fields": {
+        "user": 1,
+        "order_date": "2024-10-01T13:58:29.196Z",
+        "book": null,
+        "ebook": null,
+        "accessory": null,
+        "pencil": null,
+        "other": null,
+        "book_wrap": 2,
+        "bookmark": null,
+        "booklet_folder": null,
+        "school_office": null,
+        "price": "4.00",
+        "quantity": 1,
+        "total_cost": "4.00",
+        "status": "Pending",
+        "payment_method": "Credit Card",
+        "payment_status": "Unpaid",
+        "delivery_email": "ott4004@gmail.com",
+        "email_sent_date": null,
+        "download_link": null,
+        "download_expiry_date": null
+    }
+},
+{
+    "model": "store.order",
+    "pk": 25,
+    "fields": {
+        "user": 1,
+        "order_date": "2024-10-01T13:58:29.206Z",
+        "book": null,
+        "ebook": null,
+        "accessory": null,
+        "pencil": null,
+        "other": null,
+        "book_wrap": null,
+        "bookmark": null,
+        "booklet_folder": 1,
+        "school_office": null,
+        "price": "0.50",
+        "quantity": 1,
+        "total_cost": "0.50",
+        "status": "Pending",
+        "payment_method": "Credit Card",
+        "payment_status": "Unpaid",
+        "delivery_email": "ott4004@gmail.com",
+        "email_sent_date": null,
+        "download_link": null,
+        "download_expiry_date": null
+    }
+},
+{
+    "model": "store.order",
+    "pk": 26,
+    "fields": {
+        "user": 1,
+        "order_date": "2024-10-01T13:58:29.206Z",
+        "book": null,
+        "ebook": null,
+        "accessory": null,
+        "pencil": null,
+        "other": null,
+        "book_wrap": null,
+        "bookmark": null,
+        "booklet_folder": 2,
+        "school_office": null,
+        "price": "2.50",
+        "quantity": 1,
+        "total_cost": "2.50",
+        "status": "Pending",
+        "payment_method": "Credit Card",
+        "payment_status": "Unpaid",
+        "delivery_email": "ott4004@gmail.com",
+        "email_sent_date": null,
+        "download_link": null,
+        "download_expiry_date": null
+    }
+},
+{
+    "model": "store.order",
+    "pk": 27,
+    "fields": {
+        "user": 1,
+        "order_date": "2024-10-01T13:58:29.216Z",
+        "book": null,
+        "ebook": null,
+        "accessory": null,
+        "pencil": null,
+        "other": null,
+        "book_wrap": null,
+        "bookmark": 1,
+        "booklet_folder": null,
+        "school_office": null,
+        "price": "4.99",
+        "quantity": 1,
+        "total_cost": "4.99",
+        "status": "Pending",
+        "payment_method": "Credit Card",
+        "payment_status": "Unpaid",
+        "delivery_email": "ott4004@gmail.com",
+        "email_sent_date": null,
+        "download_link": null,
+        "download_expiry_date": null
+    }
+},
+{
+    "model": "store.order",
+    "pk": 28,
+    "fields": {
+        "user": 1,
+        "order_date": "2024-10-01T13:58:29.224Z",
+        "book": null,
+        "ebook": null,
+        "accessory": null,
+        "pencil": null,
+        "other": null,
+        "book_wrap": null,
+        "bookmark": 2,
+        "booklet_folder": null,
+        "school_office": null,
+        "price": "3.99",
+        "quantity": 1,
+        "total_cost": "3.99",
+        "status": "Pending",
+        "payment_method": "Credit Card",
+        "payment_status": "Unpaid",
+        "delivery_email": "ott4004@gmail.com",
+        "email_sent_date": null,
+        "download_link": null,
+        "download_expiry_date": null
+    }
+},
+{
+    "model": "store.order",
+    "pk": 29,
+    "fields": {
+        "user": 1,
+        "order_date": "2024-10-01T16:19:05.192Z",
+        "book": 4,
+        "ebook": null,
+        "accessory": null,
+        "pencil": null,
+        "other": null,
+        "book_wrap": null,
+        "bookmark": null,
+        "booklet_folder": null,
+        "school_office": null,
+        "price": "6.99",
+        "quantity": 1,
+        "total_cost": "6.99",
+        "status": "Pending",
+        "payment_method": "Credit Card",
+        "payment_status": "Unpaid",
+        "delivery_email": "ott4004@gmail.com",
+        "email_sent_date": null,
+        "download_link": null,
+        "download_expiry_date": null
+    }
+},
+{
+    "model": "store.order",
+    "pk": 30,
+    "fields": {
+        "user": 1,
+        "order_date": "2024-10-01T16:19:05.192Z",
+        "book": 3,
+        "ebook": null,
+        "accessory": null,
+        "pencil": null,
+        "other": null,
+        "book_wrap": null,
+        "bookmark": null,
+        "booklet_folder": null,
+        "school_office": null,
+        "price": "24.65",
+        "quantity": 1,
+        "total_cost": "24.65",
+        "status": "Pending",
+        "payment_method": "Credit Card",
+        "payment_status": "Unpaid",
+        "delivery_email": "ott4004@gmail.com",
+        "email_sent_date": null,
+        "download_link": null,
+        "download_expiry_date": null
+    }
+},
+{
+    "model": "store.order",
+    "pk": 31,
+    "fields": {
+        "user": 1,
+        "order_date": "2024-10-01T16:19:05.192Z",
+        "book": null,
+        "ebook": 1,
+        "accessory": null,
+        "pencil": null,
+        "other": null,
+        "book_wrap": null,
+        "bookmark": null,
+        "booklet_folder": null,
+        "school_office": null,
+        "price": "19.99",
+        "quantity": 1,
+        "total_cost": "19.99",
+        "status": "Pending",
+        "payment_method": "Credit Card",
+        "payment_status": "Unpaid",
+        "delivery_email": "ott4004@gmail.com",
+        "email_sent_date": null,
+        "download_link": null,
+        "download_expiry_date": null
+    }
+},
+{
+    "model": "store.order",
+    "pk": 32,
+    "fields": {
+        "user": 1,
+        "order_date": "2024-10-01T16:19:05.209Z",
+        "book": null,
+        "ebook": null,
+        "accessory": null,
+        "pencil": null,
+        "other": null,
+        "book_wrap": 1,
+        "bookmark": null,
+        "booklet_folder": null,
+        "school_office": null,
+        "price": "2.00",
+        "quantity": 1,
+        "total_cost": "2.00",
+        "status": "Pending",
+        "payment_method": "Credit Card",
+        "payment_status": "Unpaid",
+        "delivery_email": "ott4004@gmail.com",
+        "email_sent_date": null,
+        "download_link": null,
+        "download_expiry_date": null
+    }
+},
+{
+    "model": "store.order",
+    "pk": 33,
+    "fields": {
+        "user": 1,
+        "order_date": "2024-10-01T16:19:05.209Z",
+        "book": null,
+        "ebook": null,
+        "accessory": null,
+        "pencil": null,
+        "other": null,
+        "book_wrap": null,
+        "bookmark": 1,
+        "booklet_folder": null,
+        "school_office": null,
+        "price": "4.99",
+        "quantity": 1,
+        "total_cost": "4.99",
+        "status": "Pending",
+        "payment_method": "Credit Card",
+        "payment_status": "Unpaid",
+        "delivery_email": "ott4004@gmail.com",
+        "email_sent_date": null,
+        "download_link": null,
+        "download_expiry_date": null
+    }
+},
+{
+    "model": "store.order",
+    "pk": 34,
+    "fields": {
+        "user": 1,
+        "order_date": "2024-10-01T16:19:05.227Z",
+        "book": null,
+        "ebook": null,
+        "accessory": null,
+        "pencil": null,
+        "other": null,
+        "book_wrap": null,
+        "bookmark": null,
+        "booklet_folder": 2,
+        "school_office": null,
+        "price": "2.50",
+        "quantity": 1,
+        "total_cost": "2.50",
+        "status": "Pending",
+        "payment_method": "Credit Card",
+        "payment_status": "Unpaid",
+        "delivery_email": "ott4004@gmail.com",
+        "email_sent_date": null,
+        "download_link": null,
+        "download_expiry_date": null
+    }
+},
+{
+    "model": "store.order",
+    "pk": 35,
+    "fields": {
+        "user": 1,
+        "order_date": "2024-10-01T16:19:05.227Z",
+        "book": null,
+        "ebook": null,
+        "accessory": null,
+        "pencil": 2,
+        "other": null,
+        "book_wrap": null,
+        "bookmark": null,
+        "booklet_folder": null,
+        "school_office": null,
+        "price": "2.00",
+        "quantity": 1,
+        "total_cost": "2.00",
+        "status": "Pending",
+        "payment_method": "Credit Card",
+        "payment_status": "Unpaid",
+        "delivery_email": "ott4004@gmail.com",
+        "email_sent_date": null,
+        "download_link": null,
+        "download_expiry_date": null
+    }
+},
+{
+    "model": "store.order",
+    "pk": 36,
+    "fields": {
+        "user": 1,
+        "order_date": "2024-10-01T16:19:05.243Z",
+        "book": null,
+        "ebook": null,
+        "accessory": null,
+        "pencil": null,
+        "other": 1,
+        "book_wrap": null,
+        "bookmark": null,
+        "booklet_folder": null,
+        "school_office": null,
+        "price": "3.00",
+        "quantity": 1,
+        "total_cost": "3.00",
+        "status": "Pending",
+        "payment_method": "Credit Card",
+        "payment_status": "Unpaid",
+        "delivery_email": "ott4004@gmail.com",
+        "email_sent_date": null,
+        "download_link": null,
+        "download_expiry_date": null
+    }
+}
+]
