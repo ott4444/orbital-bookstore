@@ -2,52 +2,15 @@
 <html lang="en">
 <head>
     <title>Search Results</title>
-    <style>
-        .item-list {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 20px;
-            list-style-type: none;
-            padding: 0;
-            justify-content: center;
-        }
-        .item {
-            width: calc(25% - 15px);
-            min-width: 200px;
-            border: 1px solid #ddd;
-            padding: 10px;
-            box-sizing: border-box;
-        }
-        .item-cover {
-            width: 100%;
-            height: auto;
-            max-height: 200px;
-            object-fit: cover;
-        }
-        .item-info {
-            margin-top: 10px;
-        }
-        .add-to-cart {
-            margin-top: 10px;
-        }
-        @media (max-width: 768px) {
-            .item {
-                width: calc(50% - 10px);
-            }
-        }
-        .back-home {
-            display: block;
-            margin-bottom: 20px;
-            text-align: center;
-        }
-    </style>
+     {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'store/styles.css' %}">
+
 </head>
 <body>
     <!-- Load custom filters -->
     {% load custom_filters %}
 
-    <!-- Back to Home Link -->
-    <a href="{% url 'home' %}" class="back-home">Back to Home</a>
+    {% include 'store/_navbar.html' %}
 
     <h1>Search Results</h1>
 
@@ -174,5 +137,8 @@
     {% else %}
         <p>No items found matching your query.</p>
     {% endif %}
+
+    {% include 'store/_footer.html' %}
+
 </body>
 </html>

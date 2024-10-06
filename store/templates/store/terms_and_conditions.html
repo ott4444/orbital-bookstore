@@ -1,13 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     {% extends 'store/base.html' %}
+
+    {% block title %}
     <title>Terms and Conditions</title>
+      {% endblock %}
 </head>
 <body>
-    <a href="{% url 'home' %}" class="back-home">Back to Home</a>
-
+    {% include 'store/_navbar.html' %}
+    {% block content %}
+    <div class="content">
     <h1>Terms and Conditions</h1>
     <p>Welcome to Orbital Bookstore. These terms and conditions outline the rules and regulations for the use of our website as part of a student project for learning purposes.</p>
 
@@ -30,5 +33,9 @@
     <p>If you have any questions or concerns regarding these terms, please contact the project team through the provided channels.</p>
 
     <p><strong>Note:</strong> This website is part of a Python course project and will not be used for any commercial or public purposes.</p>
+
+
+     </div>
+    {% endblock %}
 </body>
 </html>

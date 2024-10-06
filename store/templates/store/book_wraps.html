@@ -1,13 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    {% extends 'store/base.html' %}
+
+    {% block title %}
     <title>Book Wraps</title>
+     {% endblock %}
 </head>
 <body>
-     <a href="{% url 'home' %}">Back to Home</a>
-     <br>
-     <a href="{% url 'accessories' %}">Back to Accessories</a>
-
+     {% include 'store/_navbar.html' %}
+    {% block content %}
+    <div class="content">
     <h1>Book Wraps</h1>
     <p>Browse our collection of book wraps.</p>
     <p>Book Wrap ID: {{ book_wrap.id }}</p>
@@ -29,6 +32,8 @@
     </div>
 {% endfor %}
 
+   </div>
+    {% endblock %}
 
 </body>
 </html>

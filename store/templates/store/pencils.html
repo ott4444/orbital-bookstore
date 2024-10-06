@@ -1,14 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    {% extends 'store/base.html' %}
+
+    {% block title %}
     <title>Pencils</title>
+    {% endblock %}
 </head>
 <body>
 
-    <a href="{% url 'home' %}">Back to Home</a>
-    <br>
-    <a href="{% url 'school_and_office' %}">Back to School and Office</a>
-
+    {% include 'store/_navbar.html' %}
+    {% block content %}
+    <div class="content">
     <h1>Pencils</h1>
     <p>Browse our collection of pencils.</p>
 
@@ -34,6 +37,9 @@
     {% else %}
         <p>No pencils found.</p>
     {% endif %}
+
+     </div>
+    {% endblock %}
 
 </body>
 </html>

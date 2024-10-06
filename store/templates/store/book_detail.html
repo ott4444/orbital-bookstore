@@ -1,13 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    {% extends 'store/base.html' %}
+
+    {% block title %}
     <title>{{ book.title }} - Details</title>
+    {% endblock %}
 </head>
 <body>
-
-    <!-- Back to Book List -->
-    <p><a href="{% url 'home' %}">Back to Book List</a></p>
-
+    {% include 'store/_navbar.html' %}
+    {% block content %}
+    <div class="content">
     <h1>{{ book.title }}</h1>
 
     <!-- Display the cover art using the URL stored in the 'cover_art' field -->
@@ -54,6 +57,9 @@
             <button type="submit">Submit Review</button>
         </form>
     {% endif %}
+
+    </div>
+    {% endblock %}
 
 </body>
 </html>

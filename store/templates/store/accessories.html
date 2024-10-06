@@ -2,37 +2,30 @@
 <html lang="en">
 <head>
 
-    <title>Accessories</title>
-    <style>
-        .submenu-nav {
-            display: flex;
-            gap: 10px;
-        }
-        .submenu-nav a {
-            background-color: #4CAF50;
-            color: white;
-            padding: 10px 20px;
-            text-decoration: none;
-            border-radius: 5px;
-        }
-        .submenu-nav a:hover {
-            background-color: #45a049;
-        }
-    </style>
+    {% extends 'store/base.html' %}
+
+    {% block title %}
+        Accessories - Orbital Bookstore
+    {% endblock %}
+
+    {% block content %}
+    <div class="content">
+        <h1>Accessories</h1>
+        <p>Find various accessories here.</p>
+    </div>
+    {% endblock %}
+
 </head>
 <body>
+    {% include 'store/_navbar.html' %}
 
-    <a href="{% url 'home' %}">Back to Home</a>
 
     <h1>Accessories</h1>
     <p>Find various accessories here.</p>
 
-    <!-- Submenu Links for Accessories -->
-    <nav class="submenu-nav">
-        <a href="{% url 'book_wraps' %}">Book Wraps</a>
-        <a href="{% url 'bookmarks' %}">Bookmark</a>
-    </nav>
 
+
+    {% include 'store/_footer.html' %}
 
 </body>
 </html>

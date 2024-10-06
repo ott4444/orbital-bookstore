@@ -2,9 +2,11 @@
 <html lang="en">
 <head>
     <title>Your Reviews</title>
+     {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'store/styles.css' %}">
 </head>
 <body>
-    <a href="{% url 'home' %}" class="back-home">Back to Home</a>
+    {% include 'store/_navbar.html' %}
 
     <h1>Your Reviews</h1>
     {% if reviews %}
@@ -20,5 +22,8 @@
     {% else %}
         <p>You have not written any reviews yet.</p>
     {% endif %}
+
+    {% include 'store/_footer.html' %}
+
 </body>
 </html>

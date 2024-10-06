@@ -1,83 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    {% load static %}
     <title>Orbital Bookstore - Home</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh; /* Ensure the body takes the full height */
-            background-color: #e8eac0;
-        }
-        .page-wrapper {
-            width: 100%;
-            max-width: 1200px;
-            padding: 20px;
-            box-sizing: border-box;
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
-        }
-        .container {
-            width: 100%;
-            flex-grow: 1;
-        }
-        .weather-widget {
-            position: fixed;
-            top: 110px;
-            right: 10px;
-            z-index: 1000;
-            width: 300px;
-            overflow: hidden;
-        }
-
-
-        @media (max-width: 768px) {
-            .book-item {
-                width: calc(50% - 10px);
-            }
-        }
-        .search-container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-            margin: 20px 0;
-        }
-        .site-title {
-            font-size: 36px;
-            margin-bottom: 10px;
-            margin-top: 25px; /* Adjusted to move the title higher */
-            text-align: center;
-            color: #4a55da
-        }
-        .search-bar {
-            width: 300px;
-            padding: 5px;
-            font-size: 16px;
-        }
-        .search-button {
-            padding: 5px 10px;
-            font-size: 16px;
-            cursor: pointer;
-            background-color: #98da90
-        }
-        footer {
-            background-color: #8d76ea;
-            padding: 20px;
-            text-align: center;
-            margin-top: auto; /* This ensures that the footer is pushed to the bottom */
-            width: 100%;
-        }
-
-
-    </style>
+    <link rel="stylesheet" type="text/css" href="{% static 'store/styles.css' %}">
 </head>
 <body>
-
     <div class="page-wrapper">
         <div class="container">
             {% include 'store/_navbar.html' %}
@@ -90,24 +18,18 @@
                     <button type="submit" class="search-button">Search</button>
                 </form>
             </div>
-
         </div>
-
 
         <!-- Weather Widget fixed to top right -->
         <div class="weather-widget">
-            <div id="ww_4b239e0ebbb27" v='1.3' loc='auto' a='{"t":"horizontal","lang":"en","sl_lpl":1,"ids":[],"font":"Arial","sl_ics":"one_a","sl_sot":"celsius","cl_bkg":"image","cl_font":"#FFFFFF","cl_cloud":"#FFFFFF","cl_persp":"#81D4FA","cl_sun":"#FFC107","cl_moon":"#FFC107","cl_thund":"#FF5722"}'><a href="https://weatherwidget.org/" id="ww_4b239e0ebbb27_u" target="_blank">HTML Weather Widget for website</a></div>
+            <div id="ww_4b239e0ebbb27" v='1.3' loc='auto' a='{"t":"horizontal","lang":"en","sl_lpl":1,"ids":[],"font":"Arial","sl_ics":"one_a","sl_sot":"celsius","cl_bkg":"image","cl_font":"#FFFFFF","cl_cloud":"#FFFFFF","cl_persp":"#81D4FA","cl_sun":"#FFC107","cl_moon":"#FFC107","cl_thund":"#FF5722"}'>
+                <a href="https://weatherwidget.org/" id="ww_4b239e0ebbb27_u" target="_blank">HTML Weather Widget for website</a>
+            </div>
         </div>
     </div>
 
-    <!-- Footer -->
-    <footer>
-        <p>
-            <a href="{% url 'about_us' %}">About Us</a> |
-            <a href="{% url 'contact_us' %}">Contact Us</a> |
-            <a href="{% url 'terms_and_conditions' %}">Terms & Conditions</a>
-        </p>
-    </footer>
+     {% include 'store/_footer.html' %}
+
 
     <script>
         (function() {

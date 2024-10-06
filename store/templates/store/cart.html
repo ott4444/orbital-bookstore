@@ -1,11 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    {% extends 'store/base.html' %}
+
+    {% block title %}
     <title>Your Cart</title>
+    {% endblock %}
 </head>
 <body>
-    <a href="{% url 'home' %}">Continue Shopping</a>
-
+    {% include 'store/_navbar.html' %}
+    {% block content %}
+    <div class="content">
     <h1>Your Cart</h1>
 
     {% if cart_items %}
@@ -74,7 +79,8 @@
         <p>Your cart is empty.</p>
     {% endif %}
 
-
+    </div>
+    {% endblock %}
 
 </body>
 </html>

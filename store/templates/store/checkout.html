@@ -2,6 +2,8 @@
 <html lang="en">
 <head>
     <title>Checkout</title>
+     {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'store/styles.css' %}">
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -201,5 +203,8 @@
             }
         }
     </script>
+
+    {% include 'store/_footer.html' %}
+
 </body>
 </html>

@@ -1,14 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    {% extends 'store/base.html' %}
+
+    {% block title %}
     <title>{{ ebook.title }} - Details</title>
+    {% endblock %}
 </head>
 <body>
 
-    <!-- Back to E-books link -->
-    <a href="{% url 'ebooks' %}" class="back-ebooks">Back to E-books</a>
-
-
+    {% include 'store/_navbar.html' %}
+    {% block content %}
+    <div class="content">
     <!-- Ebook details -->
     <h1>{{ ebook.title }}</h1>
     <p><strong>Author:</strong> {{ ebook.author }}</p>
@@ -60,6 +63,9 @@
             <button type="submit">Submit Review</button>
         </form>
     {% endif %}
+
+    </div>
+    {% endblock %}
 
 </body>
 </html>

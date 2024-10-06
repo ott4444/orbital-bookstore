@@ -1,37 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    {% extends 'store/base.html' %}
+
+    {% block title %}
     <title>School and Office</title>
-    <style>
-        .submenu-nav {
-            display: flex;
-            gap: 10px;
-        }
-        .submenu-nav a {
-            background-color: #4CAF50;
-            color: white;
-            padding: 10px 20px;
-            text-decoration: none;
-            border-radius: 5px;
-        }
-        .submenu-nav a:hover {
-            background-color: #45a049;
-        }
-    </style>
+    {% endblock %}
+
 </head>
 <body>
 
-    <a href="{% url 'home' %}">Back to Home</a>
-
+    {% include 'store/_navbar.html' %}
+    {% block content %}
+    <div class="content">
     <h1>School and Office</h1>
     <p>Browse through school and office supplies.</p>
 
-    <!-- Submenu Links for School and Office -->
-    <nav class="submenu-nav">
-        <a href="{% url 'booklets_folders' %}">Booklets/Folders</a>
-        <a href="{% url 'pencils' %}">Pencils</a>
-        <a href="{% url 'other' %}">Other</a>
-    </nav>
+
+
+     </div>
+    {% endblock %}
 
 </body>
 </html>

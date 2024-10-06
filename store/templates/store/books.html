@@ -1,53 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    {% extends 'store/base.html' %}
+
+    {% block title %}
     <title>Books List</title>
-    <style>
-        /* Styling for the overall container */
-        .item-list {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 20px;
-            list-style-type: none;
-            padding: 0;
-            justify-content: center;
-        }
+     {% endblock %}
 
-        /* Styling for each item (book) */
-        .item {
-            width: calc(25% - 15px); /* Adjusts the width of each item */
-            min-width: 200px; /* Minimum width for smaller screens */
-            border: 1px solid #ddd;
-            padding: 10px;
-            box-sizing: border-box;
-            text-align: center;
-        }
-
-        /* Image size settings for book cover */
-        .item-cover {
-            width: 100%;
-            height: auto;
-            max-height: 200px; /* Restrict max height for the image */
-            object-fit: cover;
-        }
-
-        /* Additional info under each book */
-        .item-info {
-            margin-top: 10px;
-        }
-
-        /* Responsive design for smaller screens */
-        @media (max-width: 768px) {
-            .item {
-                width: calc(50% - 10px); /* Two items per row on smaller screens */
-            }
-        }
-    </style>
 </head>
 <body>
 
-    <a href="{% url 'home' %}" class="back-home">Back to Home</a>
-
+    {% include 'store/_navbar.html' %}
+    {% block content %}
+    <div class="content">
     <h1>Books</h1>
     <p>Explore our collection of Books.</p>
 
@@ -81,6 +46,9 @@
     {% else %}
         <p>No books available at the moment.</p>
     {% endif %}
+
+    </div>
+    {% endblock %}
 
 </body>
 </html>
