@@ -141,3 +141,19 @@ footer {
                 width: calc(50% - 10px); /* Two items per row on smaller screens */
             }
         }
+.ad-widget {
+    position: fixed;
+    right: 10px; /* Keep it positioned to the right */
+    top: 150px;  /* Adjust this value to move it lower */
+    width: 300px;/* Set a fixed width for the ad widget */
+    height: auto;
+    z-index: 1000; /* Ensure it's above other content */
+}
+
+.ad-widget img {
+    width: 100%;  /* Make the image take up the full width of its container */
+    height: auto; /* Maintain aspect ratio */
+    border: 1px solid #ddd; /* Optional border */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
