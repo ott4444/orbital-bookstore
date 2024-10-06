@@ -1,0 +1,143 @@
+/* General body styling */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background-color: #e8eac0; /* Background color */
+}
+
+/* Navbar styling */
+.navbar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #8d76ea;
+    padding: 10px;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000; /* Keeps navbar on top */
+}
+/* Apply a margin-top or padding-top to ensure the content starts below the navbar */
+.content {
+    padding-top: 60px; /* Adjust this value based on your navbar's height */
+}
+
+h1 {
+    margin-top: 20px; /* You can also adjust the margin of h1 for better spacing */
+}
+
+/* Adjust the page content to start below the navbar */
+.page-wrapper {
+    margin-top: 60px; /* Add space for navbar */
+    width: 100%;
+}
+
+/* Title styling */
+.site-title {
+    font-size: 36px;
+    margin-bottom: 20px;
+    margin-top: 10px; /* Space below navbar */
+    text-align: center;
+    color: #4a55da;
+}
+
+/* Search container */
+.search-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 20px; /* Space between title and search bar */
+}
+
+/* Search bar */
+.search-bar {
+    width: 300px;
+    padding: 5px;
+    font-size: 16px;
+}
+
+/* Search button */
+.search-button {
+    padding: 5px 10px;
+    font-size: 16px;
+    cursor: pointer;
+    background-color: #98da90;
+    border: none;
+    margin-left: 5px;
+}
+
+/* Weather widget positioning */
+.weather-widget {
+    position: fixed;
+    top: 150px; /* Place it below navbar and search */
+    right: 20px; /* Right side */
+    z-index: 999;
+    width: 300px;
+    overflow: hidden;
+}
+
+/* Footer styling */
+footer {
+    background-color: #8d76ea;
+    padding: 20px;
+    text-align: center;
+    margin-top: auto; /* Push footer to the bottom */
+    width: 100%;
+}
+
+/* Responsive design for smaller screens */
+@media (max-width: 768px) {
+    .search-bar {
+        width: 100%;
+    }
+
+    .weather-widget {
+        top: 200px; /* Adjust for smaller screens */
+        right: 10px;
+    }
+}
+
+.item-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            list-style-type: none;
+            padding: 0;
+            justify-content: center;
+        }
+
+        /* Styling for each item (book) */
+        .item {
+            width: calc(25% - 15px); /* Adjusts the width of each item */
+            min-width: 200px; /* Minimum width for smaller screens */
+            border: 1px solid #ddd;
+            padding: 10px;
+            box-sizing: border-box;
+            text-align: center;
+        }
+
+        /* Image size settings for book cover */
+        .item-cover {
+            width: 100%;
+            height: auto;
+            max-height: 200px; /* Restrict max height for the image */
+            object-fit: cover;
+        }
+
+        /* Additional info under each book */
+        .item-info {
+            margin-top: 10px;
+        }
+
+        /* Responsive design for smaller screens */
+        @media (max-width: 768px) {
+            .item {
+                width: calc(50% - 10px); /* Two items per row on smaller screens */
+            }
+        }

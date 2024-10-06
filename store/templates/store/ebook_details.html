@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% extends 'store/base.html' %}
+
+    {% block title %}
+    <title>{{ ebook.title }} - Details</title>
+    {% endblock %}
+</head>
+<body>
+
+    {% include 'store/_navbar.html' %}
+    {% block content %}
+    <div class="content">
+    <!-- Ebook details -->
+    <h1>{{ ebook.title }}</h1>
+    <p><strong>Author:</strong> {{ ebook.author }}</p>
+    <p><strong>Description:</strong> {{ ebook.description }}</p>
+    <p><strong>Price:</strong> €{{ ebook.price }}</p>
+
+    <!-- Add to Cart functionality -->
+    {% if ebook.availability %}
+    <form method="POST" action="{% url 'add_to_cart' 'ebook' ebook.id %}">
+        {% csrf_token %}
+        <button type="submit">Add to Cart</button>
+    </form>
+    {% endif %}
+
+    <!-- Add to Favorites functionality -->
+    {% if user.is_authenticated %}
+    <p>
+        <a href="{% url 'add_to_favorites' 'ebook' ebook.id %}">Add to Favorites</a>
+    </p>
+    {% endif %}
+
+    <!-- Display cover art if available -->
+    {% if ebook.cover_art %}
+    <img src="{{ ebook.cover_art.url }}" alt="{{ ebook.title }} Cover Art" style="width: 200px;">
+    {% else %}
+    <p>No cover art available.</p>
+    {% endif %}
+
+    <!-- Review section -->
+    <h3>Reviews</h3>
+    <ul>
+        {% if reviews %}
+            {% for review in reviews %}
+            <li>
+                {{ review.user.username }}: {{ review.rating }} stars - {{ review.review_text }}
+            </li>
+            {% endfor %}
+        {% else %}
+            <li>No reviews yet.</li>
+        {% endif %}
+    </ul>
+
+    <!-- Write a Review form (only if logged in) -->
+    {% if user.is_authenticated %}
+        <h3>Add a Review</h3>
+        <form method="POST">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Submit Review</button>
+        </form>
+    {% endif %}
+
+    </div>
+    {% endblock %}
+
+</body>
+</html>

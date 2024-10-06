@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Order Success</title>
+</head>
+<body>
+    <h1>Order Completed Successfully!</h1>
+    <p>Thank you for your order. You will receive a confirmation email shortly.</p>
+
+    {% if orders %}
+        <h2>Your Downloads</h2>
+        <ul>
+            {% for order in orders %}
+                {% if order.book %}
+                    <li>{{ order.book.title }} - No download available for physical books.</li>
+                {% elif order.ebook %}
+                    <li>{{ order.ebook.title }} - <a href="{{ order.ebook.download_link }}" target="_blank">Download</a></li>
+                {% elif order.accessory %}
+                    <li>{{ order.accessory.name }} - No download available for accessories.</li>
+                {% elif order.pencil %}
+                    <li>{{ order.pencil.school_office.name }} - No download available for pencils.</li>
+                {% elif order.other %}
+                    <li>{{ order.other.school_office.name }} - No download available for other items.</li>
+                {% elif order.book_wrap %}
+                    <li>{{ order.book_wrap.accessory.name }} - No download available for book wraps.</li>
+                {% elif order.bookmark %}
+                    <li>{{ order.bookmark.accessory.name }} - No download available for bookmarks.</li>
+                {% elif order.booklet_folder %}
+                    <li>{{ order.booklet_folder.school_office.name }} - No download available for booklets/folders.</li>
+                {% elif order.school_office %}
+                    <li>{{ order.school_office.name }} - No download available for school and office supplies.</li>
+                {% endif %}
+            {% endfor %}
+        </ul>
+    {% endif %}
+
+    <a href="{% url 'home' %}">Continue Shopping</a>
+</body>
+</html>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% extends 'store/base.html' %}
+
+    {% block title %}
+    <title>My Favorites</title>
+    {% endblock %}
+</head>
+<body>
+
+    {% include 'store/_navbar.html' %}
+    {% block content %}
+    <div class="content">
+    <h1>My Favorites</h1>
+    <ul>
+        {% for favorite in favorites %}
+            <li>
+                {% if favorite.book %}
+                    <a href="{% url 'book_detail' favorite.book.id %}">{{ favorite.book.title }}</a>
+                    <form method="POST" action="{% url 'remove_from_favorites' favorite.id %}">
+                        {% csrf_token %}
+                        <button type="submit">Remove</button>
+                    </form>
+                {% elif favorite.ebook %}
+                    <a href="{% url 'ebook_detail' favorite.ebook.id %}">{{ favorite.ebook.title }}</a>
+                    <form method="POST" action="{% url 'remove_from_favorites' favorite.id %}">
+                        {% csrf_token %}
+                        <button type="submit">Remove</button>
+                    </form>
+                {% elif favorite.book_wrap %}
+                    <p>{{ favorite.book_wrap.accessory.name }} - {{ favorite.book_wrap.color }}</p>
+                    <form method="POST" action="{% url 'remove_from_favorites' favorite.id %}">
+                        {% csrf_token %}
+                        <button type="submit">Remove</button>
+                    </form>
+                {% elif favorite.bookmark %}
+                    <p>{{ favorite.bookmark.accessory.name }} - {{ favorite.bookmark.design }}</p>
+                    <form method="POST" action="{% url 'remove_from_favorites' favorite.id %}">
+                        {% csrf_token %}
+                        <button type="submit">Remove</button>
+                    </form>
+                {% elif favorite.pencil %}
+                    <p>{{ favorite.pencil.school_office.name }} - {{ favorite.pencil.pencil_type }}</p>
+                    <form method="POST" action="{% url 'remove_from_favorites' favorite.id %}">
+                        {% csrf_token %}
+                        <button type="submit">Remove</button>
+                    </form>
+                {% elif favorite.other %}
+                    <p>{{ favorite.other.description }}</p>
+                    <form method="POST" action="{% url 'remove_from_favorites' favorite.id %}">
+                        {% csrf_token %}
+                        <button type="submit">Remove</button>
+                    </form>
+                {% elif favorite.booklet_folder %}
+                    <p>{{ favorite.booklet_folder.school_office.name }} - {{ favorite.booklet_folder.size }}</p>
+                    <form method="POST" action="{% url 'remove_from_favorites' favorite.id %}">
+                        {% csrf_token %}
+                        <button type="submit">Remove</button>
+                    </form>
+                {% endif %}
+            </li>
+        {% endfor %}
+    </ul>
+
+    </div>
+    {% endblock %}
+
+</body>
+</html>

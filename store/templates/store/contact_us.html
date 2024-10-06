@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+     {% extends 'store/base.html' %}
+
+    {% block title %}
+    <title>Contact Us</title>
+     {% endblock %}
+</head>
+<body>
+    {% include 'store/_navbar.html' %}
+    {% block content %}
+    <div class="content">
+    <h1>Contact Us</h1>
+        <p>Contact us at:<br>
+              CEO & senior developer (major works):<br>
+              Tarmo Kõuhkna - tarmokouhkna@icloud.com<br>
+              Junior developer (smaller jobs):<br>
+              Jaan Karu - ott4004@gmail.com<br>
+              Junior developer (design,accounting):<br>
+              Merlyn Mey - merlynmey52@gmail.com
+        </p>
+    </div>
+    {% endblock %}
+
+</body>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Your Reviews</title>
+     {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'store/styles.css' %}">
+</head>
+<body>
+    {% include 'store/_navbar.html' %}
+
+    <h1>Your Reviews</h1>
+    {% if reviews %}
+        <ul>
+        {% for review in reviews %}
+            <li>
+                <strong>{{ review.book.title }}</strong><br>
+                Rating: {{ review.rating }}<br>
+                {{ review.review_text }}
+            </li>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <p>You have not written any reviews yet.</p>
+    {% endif %}
+
+    {% include 'store/_footer.html' %}
+
+</body>
+</html>

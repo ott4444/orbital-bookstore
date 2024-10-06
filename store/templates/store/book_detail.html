@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% extends 'store/base.html' %}
+
+    {% block title %}
+    <title>{{ book.title }} - Details</title>
+    {% endblock %}
+</head>
+<body>
+    {% include 'store/_navbar.html' %}
+    {% block content %}
+    <div class="content">
+    <h1>{{ book.title }}</h1>
+
+    <!-- Display the cover art using the URL stored in the 'cover_art' field -->
+    <img src="{{ book.cover_art.url }}" alt="{{ book.title }} Cover Art" width="200">
+
+    <p>{{ book.description }}</p>
+    <p>Price: €{{ book.price }}</p>
+    <p>Availability: {% if book.availability %}In Stock{% else %}Out of Stock{% endif %}</p>
+
+    <!-- Add to Cart Form -->
+    {% if book.availability %}
+    <form method="POST" action="{% url 'add_to_cart' 'book' book.id %}">
+        {% csrf_token %}
+        <button type="submit">Add to Cart</button>
+    </form>
+    {% endif %}
+
+    <!-- Add to Favorites Button (Only if user is logged in) -->
+    {% if user.is_authenticated %}
+    <p>
+        <a href="{% url 'add_to_favorites' 'book' book.id %}">Add to Favorites</a>
+    </p>
+    {% endif %}
+
+    <h3>Reviews</h3>
+    <ul>
+        {% if reviews %}
+            {% for review in reviews %}
+            <li>
+                {{ review.user.username }}: {{ review.rating }} stars - {{ review.review_text }}
+            </li>
+            {% endfor %}
+        {% else %}
+            <li>No reviews yet.</li>
+        {% endif %}
+    </ul>
+
+<!-- Write a Review -->
+    {% if user.is_authenticated %}
+        <h3>Add a Review</h3>
+        <form method="POST">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Submit Review</button>
+        </form>
+    {% endif %}
+
+    </div>
+    {% endblock %}
+
+</body>
+</html>

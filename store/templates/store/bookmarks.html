@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% extends 'store/base.html' %}
+
+    {% block title %}
+    <title>Bookmarks</title>
+    {% endblock %}
+</head>
+<body>
+
+    {% include 'store/_navbar.html' %}
+    {% block content %}
+    <div class="content">
+    <h1>Bookmarks</h1>
+    <p>Explore our Bookmark collection.</p>
+
+    <ul>
+    {% for bookmark in bookmarks %}
+        <li>
+            <h3>{{ bookmark.accessory.name }}</h3>
+            <p>{{ bookmark.design }} - €{{ bookmark.price }}</p>
+            <a href="{% url 'add_to_favorites' 'bookmark' bookmark.id %}">Add to Favorites</a>
+
+
+            {% if user.is_authenticated %}
+            <form method="POST" action="{% url 'add_to_cart' 'bookmark' bookmark.id %}">
+                {% csrf_token %}
+                <button type="submit">Add to Cart</button>
+            </form>
+            {% endif %}
+        </li>
+    {% endfor %}
+    </ul>
+
+   </div>
+    {% endblock %}
+
+</body>
+</html>

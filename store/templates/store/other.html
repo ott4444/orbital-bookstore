@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% extends 'store/base.html' %}
+
+    {% block title %}
+    <title>Other Products</title>
+     {% endblock %}
+</head>
+<body>
+
+    {% include 'store/_navbar.html' %}
+    {% block content %}
+    <div class="content">
+    <h1>Other Products</h1>
+    <p>Explore our collection of other products.</p>
+
+    {% if other_items %}
+        <ul>
+            {% for item in other_items %}
+                <li>
+                    <strong>{{ item.school_office.name }}</strong> - {{ item.description }}<br>
+                    Price: €{{ item.price }}<br>
+                    <a href="{% url 'add_to_favorites' 'other' item.id %}">Add to Favorites</a>
+
+                    {% if user.is_authenticated %}
+                    <form method="POST" action="{% url 'add_to_cart' 'other' item.id %}">
+                        {% csrf_token %}
+                        <button type="submit">Add to Cart</button>
+                    </form>
+                    {% endif %}
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No other products available.</p>
+    {% endif %}
+
+     </div>
+    {% endblock %}
+
+</body>
+</html>

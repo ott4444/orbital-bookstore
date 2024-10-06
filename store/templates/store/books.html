@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% extends 'store/base.html' %}
+
+    {% block title %}
+    <title>Books List</title>
+     {% endblock %}
+
+</head>
+<body>
+
+    {% include 'store/_navbar.html' %}
+    {% block content %}
+    <div class="content">
+    <h1>Books</h1>
+    <p>Explore our collection of Books.</p>
+
+    <!-- Display a list of books if available -->
+    {% if books %}
+    <ul class="item-list">
+        {% for book in books %}
+        <li class="item">
+            <a href="{% url 'book_detail' book.id %}">
+                <img src="{{ book.cover_art.url }}" alt="{{ book.title }} Cover Art" class="item-cover">
+                <div class="item-info">
+                    <h4>{{ book.title }}</h4>
+                    <p>by {{ book.author }}</p>
+                    <p>€{{ book.price }}</p>
+                    <a href="{% url 'add_to_favorites' 'book' book.id %}">Add to Favorites</a>
+                </div>
+            </a>
+
+            <!-- Add to Cart Button (only for logged-in users) -->
+            {% if user.is_authenticated %}
+            <div class="add-to-cart">
+                <form method="POST" action="{% url 'add_to_cart' 'book' book.id %}">
+                    {% csrf_token %}
+                    <button type="submit">Add to Cart</button>
+                </form>
+            </div>
+            {% endif %}
+        </li>
+        {% endfor %}
+    </ul>
+    {% else %}
+        <p>No books available at the moment.</p>
+    {% endif %}
+
+    </div>
+    {% endblock %}
+
+</body>
+</html>

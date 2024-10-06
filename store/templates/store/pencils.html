@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% extends 'store/base.html' %}
+
+    {% block title %}
+    <title>Pencils</title>
+    {% endblock %}
+</head>
+<body>
+
+    {% include 'store/_navbar.html' %}
+    {% block content %}
+    <div class="content">
+    <h1>Pencils</h1>
+    <p>Browse our collection of pencils.</p>
+
+    {% if pencils %}
+        <ul>
+            {% for pencil in pencils %}
+                <li>
+                    <strong>{{ pencil.school_office.name }}</strong> - {{ pencil.pencil_type }}<br>
+                    Price: €{{ pencil.price }}<br>
+                    <a href="{% url 'add_to_favorites' 'pencil' pencil.id %}">Add to Favorites</a>
+
+
+                    <!-- Add to Cart Button -->
+                    {% if user.is_authenticated %}
+                        <form method="POST" action="{% url 'add_to_cart' 'pencil' pencil.id %}">
+                            {% csrf_token %}
+                            <button type="submit">Add to Cart</button>
+                        </form>
+                    {% endif %}
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No pencils found.</p>
+    {% endif %}
+
+     </div>
+    {% endblock %}
+
+</body>
+</html>

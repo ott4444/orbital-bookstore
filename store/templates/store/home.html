@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <title>Orbital Bookstore - Home</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'store/styles.css' %}">
+</head>
+<body>
+    <div class="page-wrapper">
+        <div class="container">
+            {% include 'store/_navbar.html' %}
+
+            <!-- Title and Search Bar in the center -->
+            <div class="search-container">
+                <h1 class="site-title">Orbital Bookstore</h1>
+                <form method="GET" action="{% url 'search' %}">
+                    <input type="text" name="q" class="search-bar" placeholder="Search by title or author" required>
+                    <button type="submit" class="search-button">Search</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Weather Widget fixed to top right -->
+        <div class="weather-widget">
+            <div id="ww_4b239e0ebbb27" v='1.3' loc='auto' a='{"t":"horizontal","lang":"en","sl_lpl":1,"ids":[],"font":"Arial","sl_ics":"one_a","sl_sot":"celsius","cl_bkg":"image","cl_font":"#FFFFFF","cl_cloud":"#FFFFFF","cl_persp":"#81D4FA","cl_sun":"#FFC107","cl_moon":"#FFC107","cl_thund":"#FF5722"}'>
+                <a href="https://weatherwidget.org/" id="ww_4b239e0ebbb27_u" target="_blank">HTML Weather Widget for website</a>
+            </div>
+        </div>
+    </div>
+
+     {% include 'store/_footer.html' %}
+
+
+    <script>
+        (function() {
+            var script = document.createElement('script');
+            script.async = true;
+            script.src = 'https://app3.weatherwidget.org/js/?id=ww_4b239e0ebbb27';
+            document.body.appendChild(script);
+        })();
+    </script>
+</body>
+</html>

@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Search Results</title>
+     {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'store/styles.css' %}">
+
+</head>
+<body>
+    <!-- Load custom filters -->
+    {% load custom_filters %}
+
+    {% include 'store/_navbar.html' %}
+
+    <h1>Search Results</h1>
+
+    {% if items %}
+        <ul class="item-list">
+            {% for item in items %}
+            <li class="item">
+                <!-- Check and display based on item type using custom filters -->
+                {% if item|is_book %}
+                    <a href="{% url 'book_detail' item.id %}">
+                        <img src="{{ item.cover_art.url }}" alt="{{ item.title }} Cover Art" class="item-cover">
+                        <div class="item-info">
+                            <h4>{{ item.title }}</h4>
+                            <p>by {{ item.author }}</p>
+                            <p>€{{ item.price }}</p>
+                        </div>
+                    </a>
+                    <!-- Add to Cart Form for books -->
+                    <div class="add-to-cart">
+                        <form method="POST" action="{% url 'add_to_cart' 'book' item.id %}">
+                            {% csrf_token %}
+                            <button type="submit">Add to Cart</button>
+                        </form>
+                    </div>
+
+                {% elif item|is_ebook %}
+                    <a href="{% url 'ebook_detail' item.id %}">
+                        <img src="{{ item.cover_art.url }}" alt="{{ item.title }} Cover Art" class="item-cover">
+                        <div class="item-info">
+                            <h4>{{ item.title }}</h4>
+                            <p>by {{ item.author }}</p>
+                            <p>€{{ item.price }}</p>
+                        </div>
+                    </a>
+                    <!-- Add to Cart Form for ebooks -->
+                    <div class="add-to-cart">
+                        <form method="POST" action="{% url 'add_to_cart' 'ebook' item.id %}">
+                            {% csrf_token %}
+                            <button type="submit">Add to Cart</button>
+                        </form>
+                    </div>
+
+                {% elif item|is_accessory %}
+                    <div class="item-info">
+                        <h4>{{ item.name }}</h4>
+                        <p>€{{ item.price }}</p>
+                    </div>
+                    <!-- Add to Cart Form for accessories -->
+                    <div class="add-to-cart">
+                        <form method="POST" action="{% url 'add_to_cart' 'accessory' item.id %}">
+                            {% csrf_token %}
+                            <button type="submit">Add to Cart</button>
+                        </form>
+                    </div>
+
+                {% elif item|is_book_wrap %}
+                    <div class="item-info">
+                        <h4>{{ item.accessory.name }} - {{ item.color }}</h4>
+                        <p>€{{ item.accessory.price }}</p>
+                    </div>
+                    <!-- Add to Cart Form for book wraps -->
+                    <div class="add-to-cart">
+                        <form method="POST" action="{% url 'add_to_cart' 'book_wrap' item.id %}">
+                            {% csrf_token %}
+                            <button type="submit">Add to Cart</button>
+                        </form>
+                    </div>
+
+                {% elif item|is_bookmark %}
+                    <div class="item-info">
+                        <h4>{{ item.accessory.name }} - {{ item.design }}</h4>
+                        <p>€{{ item.accessory.price }}</p>
+                    </div>
+                    <!-- Add to Cart Form for bookmarks -->
+                    <div class="add-to-cart">
+                        <form method="POST" action="{% url 'add_to_cart' 'bookmark' item.id %}">
+                            {% csrf_token %}
+                            <button type="submit">Add to Cart</button>
+                        </form>
+                    </div>
+
+                {% elif item|is_booklet_folder %}
+                    <div class="item-info">
+                        <h4>{{ item.school_office.name }} - {{ item.size }}</h4>
+                        <p>€{{ item.school_office.price }}</p>
+                    </div>
+                    <!-- Add to Cart Form for booklets/folders -->
+                    <div class="add-to-cart">
+                        <form method="POST" action="{% url 'add_to_cart' 'booklet_folder' item.id %}">
+                            {% csrf_token %}
+                            <button type="submit">Add to Cart</button>
+                        </form>
+                    </div>
+
+                {% elif item|is_pencil %}
+                    <div class="item-info">
+                        <h4>{{ item.school_office.name }} - {{ item.pencil_type }}</h4>
+                        <p>€{{ item.school_office.price }}</p>
+                    </div>
+                    <!-- Add to Cart Form for pencils -->
+                    <div class="add-to-cart">
+                        <form method="POST" action="{% url 'add_to_cart' 'pencil' item.id %}">
+                            {% csrf_token %}
+                            <button type="submit">Add to Cart</button>
+                        </form>
+                    </div>
+
+                {% elif item|is_school_office %}
+                    <div class="item-info">
+                        <h4>{{ item.name }}</h4>
+                        <p>€{{ item.price }}</p>
+                    </div>
+                    <!-- Add to Cart Form for school office supplies -->
+                    <div class="add-to-cart">
+                        <form method="POST" action="{% url 'add_to_cart' 'school_office' item.id %}">
+                            {% csrf_token %}
+                            <button type="submit">Add to Cart</button>
+                        </form>
+                    </div>
+                {% endif %}
+            </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No items found matching your query.</p>
+    {% endif %}
+
+    {% include 'store/_footer.html' %}
+
+</body>
+</html>

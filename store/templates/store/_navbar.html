@@ -1,0 +1,101 @@
+<div class="navbar">
+    <a href="/">Home</a>
+
+    {% if user.is_authenticated %}
+        <span>Welcome, {{ user.username }}!</span>
+
+        <!-- Dropdown for Accessories -->
+        <div class="dropdown">
+            <a class="dropbtn" href="{% url 'accessories' %}">Accessories</a>
+            <div class="dropdown-content">
+                <a href="{% url 'book_wraps' %}">Book Wraps</a>
+                <a href="{% url 'bookmarks' %}">Bookmark</a>
+            </div>
+        </div>
+
+        <!-- Dropdown for School and Office -->
+        <div class="dropdown">
+            <a class="dropbtn" href="{% url 'school_and_office' %}">School and Office</a>
+            <div class="dropdown-content">
+                <a href="{% url 'booklets_folders' %}">Booklets/Folders</a>
+                <a href="{% url 'pencils' %}">Pencils</a>
+                <a href="{% url 'other' %}">Other</a>
+            </div>
+        </div>
+
+        <!-- Regular navigation links -->
+        <a href="{% url 'books' %}">Books</a>
+        <a href="{% url 'ebooks' %}">E-books</a>
+        <a href="{% url 'view_favorites' %}">My Favorites</a>
+        <a href="{% url 'view_cart' %}">Cart ({{ cart_items_count }})</a>
+
+        <!-- Logout -->
+        <form method="POST" action="{% url 'logout' %}">
+            {% csrf_token %}
+            <button type="submit">Logout</button>
+        </form>
+    {% else %}
+        <a href="{% url 'login' %}">Login</a>
+        <a href="{% url 'register' %}">Register</a>
+    {% endif %}
+</div>
+
+<style>
+    .navbar {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #8d76ea;
+        padding: 10px;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw; /* Ensures full page width */
+        z-index: 1000;
+        box-sizing: border-box;
+    }
+
+    .navbar a {
+        color: white;
+        text-align: center;
+        padding: 14px 20px;
+        text-decoration: none;
+    }
+
+    .dropdown {
+        position: relative;
+        display: inline-block;
+    }
+
+    .dropbtn {
+        background-color: #8d76ea;
+        color: white;
+        padding: 14px 16px;
+        border: none;
+        cursor: pointer;
+    }
+
+    .dropdown-content {
+        display: none;
+        position: absolute;
+        background-color: #cde5ac;
+        min-width: 160px;
+        box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+        z-index: 1;
+    }
+
+    .dropdown-content a {
+        color: black;
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+    }
+
+    .dropdown:hover .dropdown-content {
+        display: block;
+    }
+
+    .navbar form {
+        display: inline;
+    }
+</style>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% extends 'store/base.html' %}
+
+    {% block title %}
+    <title>Book Wraps</title>
+     {% endblock %}
+</head>
+<body>
+     {% include 'store/_navbar.html' %}
+    {% block content %}
+    <div class="content">
+    <h1>Book Wraps</h1>
+    <p>Browse our collection of book wraps.</p>
+    <p>Book Wrap ID: {{ book_wrap.id }}</p>
+
+
+    {% for book_wrap in book_wraps %}
+    <div>
+        <h3>{{ book_wrap.accessory.name }} - {{ book_wrap.color }}</h3>
+        <p>Price: €{{ book_wrap.accessory.price }}</p>
+        <a href="{% url 'add_to_favorites' 'book_wrap' book_wrap.id %}">Add to Favorites</a>
+
+
+        {% if user.is_authenticated %}
+            <form method="POST" action="{% url 'add_to_cart' 'book_wrap' book_wrap.id %}">
+                {% csrf_token %}
+                <button type="submit">Add to Cart</button>
+            </form>
+        {% endif %}
+    </div>
+{% endfor %}
+
+   </div>
+    {% endblock %}
+
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% extends 'store/base.html' %}
+
+    {% block title %}
+    <title>Booklets/Folders</title>
+     {% endblock %}
+</head>
+<body>
+      {% include 'store/_navbar.html' %}
+    {% block content %}
+    <div class="content">
+    <h1>Booklets/Folders</h1>
+    <p>Find our selection of booklets and folders.</p>
+
+    <ul>
+    {% for booklet_folder in booklets_folders %}
+        <li>
+            <h3>{{ booklet_folder.school_office.name }}</h3>
+            <p>{{ booklet_folder.size }} - €{{ booklet_folder.price }}</p>
+            <a href="{% url 'add_to_favorites' 'booklet_folder' booklet_folder.id %}">Add to Favorites</a>
+
+
+            {% if user.is_authenticated %}
+            <form method="POST" action="{% url 'add_to_cart' 'booklet_folder' booklet_folder.id %}">
+                {% csrf_token %}
+                <button type="submit">Add to Cart</button>
+            </form>
+            {% endif %}
+        </li>
+    {% endfor %}
+    </ul>
+
+     </div>
+    {% endblock %}
+
+</body>
+</html>

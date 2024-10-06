@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+{% extends 'store/base.html' %}
+
+    {% block title %}
+    <title>About Us</title>
+     {% endblock %}
+
+</head>
+<body>
+    {% include 'store/_navbar.html' %}>
+    {% block content %}
+    <div class="content">
+    <h1>About Us</h1>
+        <p>We are a self-made bookstore, we sell you free books for a high price,<br>
+            because that's the way it is these days.<br>
+            There may be many mistakes in our shop, because we are still students and do not know exactly<br>
+            what we are doing and what will come out of it. <br>
+            Feel free to use our e-shop :)
+        </p>
+
+    </div>
+    {% endblock %}
+
+    {% include 'store/_footer.html' %}
+
+</body>
+</html>
