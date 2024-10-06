@@ -1,9 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    {% extends 'store/base.html' %}
+
+    {% block title %}
     <title>Order Success</title>
+    {% endblock %}
 </head>
 <body>
+    {% block content %}
+    <div class="content">
     <h1>Order Completed Successfully!</h1>
     <p>Thank you for your order. You will receive a confirmation email shortly.</p>
 
@@ -32,8 +38,18 @@
                 {% endif %}
             {% endfor %}
         </ul>
+        <h2>Your Last Orders</h2>
+        <ul>
+             {% for order in orders %}
+                <li>
+                    {{ order.item_name }} - {{ order.quantity }} x €{{ order.price }}
+                </li>
+            {% endfor %}
+        </ul>
     {% endif %}
 
     <a href="{% url 'home' %}">Continue Shopping</a>
+    </div>
+    {% endblock %}
 </body>
 </html>

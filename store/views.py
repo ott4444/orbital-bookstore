@@ -219,18 +219,16 @@ def checkout(request):
 
 @login_required
 def order_success(request):
-    # Fetch recent orders for the user, assuming you want to show the last 5 orders.
+    # Fetch recent orders for the user
     orders = Order.objects.filter(user=request.user).order_by('-order_date')[:5]
 
-    # Check if the order contains ebooks to provide download links
+    # Check if the order contains ebooks or other downloadable items
     for order in orders:
         if order.ebook:
-            order.download_link = order.ebook.download_link  # Assuming `download_link` is a field in the `Ebook` model
-        elif order.book:
-            order.download_link = order.book.download_link  # Assuming physical books have download links
+            order.download_link = order.ebook.download_link  # eBooks have a download link
+        # If you have other downloadable items (e.g., audiobooks), add them here
 
     return render(request, 'store/order_success.html', {'orders': orders})
-
 
 @login_required
 def add_review(request, book_id):
