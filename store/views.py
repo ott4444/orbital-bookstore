@@ -11,15 +11,31 @@ from django import forms
 from .models import Review
 from .forms import ReviewForm
 
+import random
+
 
 
 User = get_user_model()
 
 
 def home(request):
-    cart_items_count = Cart.objects.filter(user=request.user).count() if request.user.is_authenticated else 0
-    return render(request, 'store/home.html', {'cart_items_count': cart_items_count})
+    books = list(Book.objects.all())
+    ebooks = list(Ebook.objects.all())
 
+    # Add a type field to each book and ebook
+    for book in books:
+        book.item_type = 'book'
+
+    for ebook in ebooks:
+        ebook.item_type = 'ebook'
+
+    # Combine books and ebooks into one list
+    carousel_items = books + ebooks
+
+    return render(request, 'store/home.html', {
+        'carousel_items': carousel_items,
+        'cart_items_count': Cart.objects.filter(user=request.user).count() if request.user.is_authenticated else 0,
+    })
 
 def book_detail(request, book_id):
     book = get_object_or_404(Book, id=book_id)
@@ -472,3 +488,4 @@ def remove_from_favorites(request, favorite_id):
     favorite.delete()
     messages.success(request, 'Item removed from favorites.')
     return redirect('view_favorites')
+

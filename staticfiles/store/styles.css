@@ -159,25 +159,23 @@ footer {
 
 .carousel-container {
     width: 70%; /* Limit the carousel to 70% of the page width, leaving space for the widget */
-    height: 200px; /* Adjust as needed */
+    height: 300px; /* Adjust as needed */
     overflow: hidden;
     position: relative;
     display: inline-block;
-    margin-top: 30px; /* Adds space between the search bar and the carousel */
-    margin-bottom: 30px;
 }
 
 .carousel {
     display: flex;
     transition: transform 0.5s ease;
+    width: 100%;
 }
 
 .carousel-item {
-    min-width: 150px; /* Define fixed width for each item */
-    height: 180px; /* Adjust height */
+    min-width: 200px; /* Define fixed width for each item */
+    height: 300px; /* Adjust height */
     margin-right: 20px;
     overflow: hidden;
-    flex-shrink: 0;
 }
 
 .carousel-item img {

@@ -28,8 +28,27 @@
         </div>
     </div>
 
-     {% include 'store/_footer.html' %}
+    <!-- Carousel-->
+    <div class="carousel-container">
+        <div id="carousel" class="carousel">
+            {% for item in carousel_items %}
+            <div class="carousel-item">
+                {% if item.item_type == 'book' %}
+                <a href="{% url 'book_detail' item.id %}">
+                    <img src="{{ item.cover_art.url }}" alt="{{ item.title }} Cover Art">
+                </a>
+                {% elif item.item_type == 'ebook' %}
+                <a href="{% url 'ebook_detail' item.id %}">
+                    <img src="{{ item.cover_art.url }}" alt="{{ item.title }} Cover Art">
+                </a>
+                {% endif %}
+            </div>
+            {% endfor %}
+        </div>
+    </div>
 
+
+    {% include 'store/_footer.html' %}
 
     <script>
         (function() {
@@ -39,5 +58,42 @@
             document.body.appendChild(script);
         })();
     </script>
+
+    <!-- Carousel movement script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const carousel = document.getElementById('carousel');
+            let isHovered = false;
+            let offset = 0;  // Tracks how much the carousel has moved
+
+           // Adjust this to control sensitivity
+            const speedFactor = 0.03;
+
+            // Handle mousemove event to move the carousel based on mouse position
+            carousel.parentElement.addEventListener('mousemove', function (event) {
+                const boundingRect = this.getBoundingClientRect();
+                const mouseX = event.clientX - boundingRect.left;
+                const containerWidth = boundingRect.width;
+
+                const distanceFromCenter = (mouseX - containerWidth / 2) / (containerWidth / 2);
+
+                // Set the speed based on mouse position
+                const moveSpeed = distanceFromCenter * containerWidth * speedFactor;
+
+                // Apply movement to the carousel
+                offset += moveSpeed;
+
+                // Move the carousel
+                carousel.style.transform = `translateX(${offset}px)`;
+            });
+
+            // Optional: Reset carousel position when the mouse leaves
+            carousel.parentElement.addEventListener('mouseleave', function () {
+                offset = 0;
+                carousel.style.transform = 'translateX(0)';
+            });
+        });
+    </script>
+
 </body>
 </html>

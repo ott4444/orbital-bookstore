@@ -37,3 +37,4 @@ urlpatterns = [
     path('school-and-office/other/', views.other, name='other'),
     path('ebook/<int:ebook_id>/', views.ebook_detail, name='ebook_detail'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
