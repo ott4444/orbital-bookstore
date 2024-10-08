@@ -3,6 +3,8 @@
 <head>
     {% extends 'store/base.html' %}
 
+    {% load static %}
+
     {% block title %}
     <title>Pencils</title>
     {% endblock %}
@@ -14,6 +16,12 @@
     <div class="content">
     <h1>Pencils</h1>
     <p>Browse our collection of pencils.</p>
+
+        <div class="ad-widget">
+            <a href="https://www.booking.com" target="_blank">
+                <img src="{% static 'img/booking_ad.png' %}" alt="Booking.com Ad">
+            </a>
+        </div>
 
     {% if pencils %}
         <ul>

@@ -3,6 +3,8 @@
 <head>
     {% extends 'store/base.html' %}
 
+    {% load static %}
+
     {% block title %}
     <title>Bookmarks</title>
     {% endblock %}
@@ -14,6 +16,12 @@
     <div class="content">
     <h1>Bookmarks</h1>
     <p>Explore our Bookmark collection.</p>
+
+        <div class="ad-widget">
+            <a href="https://www.booking.com" target="_blank">
+                <img src="{% static 'img/booking_ad.png' %}" alt="Booking.com Ad">
+            </a>
+        </div>
 
     <ul>
     {% for bookmark in bookmarks %}

@@ -144,7 +144,7 @@ footer {
 .ad-widget {
     position: fixed;
     right: 10px; /* Keep it positioned to the right */
-    top: 150px;  /* Adjust this value to move it lower */
+    bottom: 80px;!important; /* Adjust this value to move it higher (increase to move it up) */
     width: 300px;/* Set a fixed width for the ad widget */
     height: auto;
     z-index: 1000; /* Ensure it's above other content */

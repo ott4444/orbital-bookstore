@@ -3,6 +3,8 @@
 <head>
     {% extends 'store/base.html' %}
 
+    {% load static %}
+
     {% block title %}
     <title>Order Success</title>
     {% endblock %}
@@ -12,6 +14,12 @@
     <div class="content">
     <h1>Order Completed Successfully!</h1>
     <p>Thank you for your order. You will receive a confirmation email shortly.</p>
+
+        <div class="ad-widget">
+            <a href="https://www.booking.com" target="_blank">
+                <img src="{% static 'img/booking_ad.png' %}" alt="Booking.com Ad">
+            </a>
+        </div>
 
     {% if orders %}
         <h2>Your Downloads</h2>
