@@ -45,7 +45,7 @@ class Book(models.Model):
     price = models.DecimalField(max_digits=10, decimal_places=2)
     availability = models.BooleanField(default=True)
     download_link = models.URLField(max_length=400)
-    category = models.ForeignKey(Category, on_delete=models.CASCADE)
+    category = models.ForeignKey(Category, on_delete=models.CASCADE,  null=True, blank=True)
     subcategory = models.ForeignKey(Subcategory, on_delete=models.CASCADE, blank=True, null=True)
 
     def __str__(self):

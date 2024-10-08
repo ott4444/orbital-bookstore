@@ -11,12 +11,29 @@
         <h1>Accessories</h1>
         <p>Find various accessories here.</p>
 
-        <!-- Advertisement Section -->
+        <!-- Display mixed accessories (bookmarks, bookwraps, etc.) -->
+        <div class="item-list">
+            {% for accessory in accessories %}
+            <div class="item">
+                <h3>{{ accessory.name }}</h3>
+                <p>{{ accessory.description }}</p>
+                <p>Price: €{{ accessory.price }}</p>
+
+                <!-- Add to Cart -->
+                <form method="POST" action="{% url 'add_to_cart' 'accessory' accessory.id %}">
+                    {% csrf_token %}
+                    <button type="submit">Add to Cart</button>
+                </form>
+            </div>
+            {% endfor %}
+        </div>
+
+        <!-- Advertisement Section
         <div class="ad-widget">
             <a href="https://www.booking.com" target="_blank">
                 <img src="{% static 'img/booking_ad.png' %}" alt="Booking.com Ad">
             </a>
-        </div>
+        </div> -->
 
     </div>
 {% endblock %}

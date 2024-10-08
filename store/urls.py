@@ -28,13 +28,14 @@ urlpatterns = [
     path('shipping-information/', views.shipping_information, name='shipping_information'),
     path('books/', views.books_view, name='books'),
     path('ebooks/', views.ebooks_view, name='ebooks'),
-    path('accessories/', views.accessories, name='accessories'),
+    path('accessories/', views.accessories_view, name='accessories'),
     path('accessories/book-wraps/', views.book_wraps, name='book_wraps'),
     path('accessories/bookmarks/', views.bookmarks, name='bookmarks'),
-    path('school-and-office/', views.school_and_office, name='school_and_office'),
+    path('school-and-office/', views.school_office_view, name='school_and_office'),
     path('school-and-office/booklets-folders/', views.booklets_folders, name='booklets_folders'),
     path('school-and-office/pencils/', views.pencils, name='pencils'),
     path('school-and-office/other/', views.other, name='other'),
     path('ebook/<int:ebook_id>/', views.ebook_detail, name='ebook_detail'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
 

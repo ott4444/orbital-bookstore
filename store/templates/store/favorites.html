@@ -55,6 +55,18 @@
                         {% csrf_token %}
                         <button type="submit">Remove</button>
                     </form>
+                {% elif favorite.school_office %}
+                    <p>{{ favorite.school_office.school_office.name }} - {{ favorite.school_office.school_office_type }}</p>
+                    <form method="POST" action="{% url 'remove_from_favorites' favorite.id %}">
+                        {% csrf_token %}
+                        <button type="submit">Remove</button>
+                    </form>
+                {% elif favorite.accessory %}
+                    <p>{{ favorite.accessory.accessory.name }} - {{ favorite.accessory.accessory_type }}</p>
+                    <form method="POST" action="{% url 'remove_from_favorites' favorite.id %}">
+                        {% csrf_token %}
+                        <button type="submit">Remove</button>
+                    </form>
                 {% elif favorite.other %}
                     <p>{{ favorite.other.description }}</p>
                     <form method="POST" action="{% url 'remove_from_favorites' favorite.id %}">

@@ -8,10 +8,8 @@ from django.contrib.auth import get_user_model
 from django.contrib.auth.hashers import make_password
 from .models import Book, Ebook, Accessory, BookWrap, Bookmark, SchoolOffice, BookletFolder, Pencil, Other, Cart, Order, Favorite, Review
 from django import forms
-from .models import Review
 from .forms import ReviewForm
 
-import random
 
 
 
@@ -399,7 +397,7 @@ def bookmarks(request):
 
 
 def school_and_office(request):
-    return render(request, 'store/school_and_office.html')
+    return render(request, 'store/school_office.html')
 
 
 def booklets_folders(request):
@@ -472,10 +470,10 @@ def add_to_favorites(request, item_type, item_id):
         # Add item to user's favorites
         favorite, created = Favorite.objects.get_or_create(user=request.user, **{f'{item_type}': item})
         if created:
-            messages.success(request, f"{getattr(item, 'title', getattr(item, 'name', 'Item'))} has been added to your favorites!")
+            messages.success(request, 'Added to your favorites!')
         else:
-            messages.info(request, f"{getattr(item, 'title', getattr(item, 'name', 'Item'))} is already in your favorites.")
-    return redirect(request.META.get('HTTP_REFERER', 'home'))
+            messages.info(request, 'This item is already in your favorites.')
+    return redirect('view_favorites')
 
 @login_required
 def view_favorites(request):
@@ -489,3 +487,25 @@ def remove_from_favorites(request, favorite_id):
     messages.success(request, 'Item removed from favorites.')
     return redirect('view_favorites')
 
+
+def accessories_view(request):
+    accessories = list(Accessory.objects.all())  # Get all accessories
+
+    return render(request, 'store/accessories.html', {
+        'accessories': accessories,
+    })
+
+
+def school_office_view(request):
+    school_office_items = SchoolOffice.objects.all()
+    pencils = Pencil.objects.all()
+    booklet_folders = BookletFolder.objects.all()
+    others = Other.objects.all()
+
+    context = {
+        'school_office_items': school_office_items,
+        'pencils': pencils,
+        'booklet_folders': booklet_folders,
+        'others': others
+    }
+    return render(request, 'store/school_and_office.html', context)

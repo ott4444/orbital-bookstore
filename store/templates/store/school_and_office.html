@@ -2,32 +2,34 @@
 <html lang="en">
 <head>
     {% extends 'store/base.html' %}
-
     {% load static %}
-
     {% block title %}
     <title>School and Office</title>
     {% endblock %}
-
 </head>
 <body>
-
     {% include 'store/_navbar.html' %}
     {% block content %}
     <div class="content">
-    <h1>School and Office</h1>
-    <p>Browse through school and office supplies.</p>
+        <h1>School and Office</h1>
+        <p>Browse through school and office supplies.</p>
 
-        <div class="ad-widget">
-            <a href="https://www.booking.com" target="_blank">
-                <img src="{% static 'img/booking_ad.png' %}" alt="Booking.com Ad">
-            </a>
+        <div class="item-list">
+            {% for item in school_office_items %}
+            <div class="item">
+                <h3>{{ item.name }}</h3>
+                <p>{{ item.description }}</p>
+                <p>Price: €{{ item.price }}</p>
+
+                <!-- Add to Cart -->
+                <form method="POST" action="{% url 'add_to_cart' 'school_office' item.id %}">
+                    {% csrf_token %}
+                    <button type="submit">Add to Cart</button>
+                </form>
+            </div>
+            {% endfor %}
         </div>
-
-
-
-     </div>
+    </div>
     {% endblock %}
-
 </body>
 </html>
