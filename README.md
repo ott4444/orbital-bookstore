@@ -125,3 +125,6 @@ License
 This project is licensed under the MIT License.
 
 
+## Demo Video
+
+[Click here to watch the demo video](https://github.com/ott4444/orbital-bookstore/blob/main/preview.mp4)
