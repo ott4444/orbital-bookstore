@@ -22,7 +22,7 @@
     {% if ebook.availability %}
     <form method="POST" action="{% url 'add_to_cart' 'ebook' ebook.id %}">
         {% csrf_token %}
-        <button type="submit">Add to Cart</button>
+        <button type="submit" class="add-to-cart-button">Add to Cart</button>
     </form>
     {% endif %}
 
@@ -56,11 +56,14 @@
 
     <!-- Write a Review form (only if logged in) -->
     {% if user.is_authenticated %}
-        <h3>Add a Review</h3>
-        <form method="POST">
-            {% csrf_token %}
-            {{ form.as_p }}
-            <button type="submit">Submit Review</button>
+        <h3 class="add-review">Add a Review</h3>
+            <form method="POST" class="review-form">
+                {% csrf_token %}
+                {{ form.rating }} <br> <!-- Assuming form.rating is for rating -->
+                {{ form.review_text }}  <!-- Assuming form.review_text is for the review text -->
+            <div class="submit-review-wrapper">
+                <button type="submit">Submit Review</button>
+            </div>
         </form>
     {% endif %}
 

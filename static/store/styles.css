@@ -25,6 +25,10 @@ body {
 /* Apply a margin-top or padding-top to ensure the content starts below the navbar */
 .content {
     padding-top: 60px; /* Adjust this value based on your navbar's height */
+    padding-left: 20px;
+    padding-right: 20px;
+
+
 }
 
 h1 {
@@ -184,4 +188,47 @@ footer {
     width: 100%;
     height: 100%;
     object-fit: cover;
+}
+
+/* Adding space between the rating input and review box */
+.review-form input,
+.review-form textarea {
+    margin-bottom: 10px; /* Add space between the fields */
+    display: inline-block;
+    width: auto; /* Adjust width to ensure proper alignment */
+}
+
+
+/* Styling for the 'Add a Review' heading */
+h3.add-review {
+    color: #48b6bb; /* Change the color */
+    font-weight: bold;
+}
+
+/* Style only the 'Submit Review' button */
+.review-form button[type="submit"] {
+    background-color: #48b6bb; /* New color for the review submit button */
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    margin-bottom: 10px;
+
+}
+
+/* Aligning the button to the bottom of the form */
+.submit-review-wrapper {
+    display: flex;
+    margin-left: 330px;
+    margin-top: -50px; /* Adjust to "lift" the button relative to the form */
+}
+
+
+/* Specific styles for the 'Add to Cart' button */
+.add-to-cart-button {
+    background-color: #a3cae3; /* Color for the add to cart button */
+    color: black;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
 }
