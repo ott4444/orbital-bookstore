@@ -13,6 +13,7 @@ from .forms import ReviewForm
 
 
 
+
 User = get_user_model()
 
 
@@ -296,8 +297,8 @@ def update_cart_quantity(request, item_id, operation):
         cart_item.total_cost = cart_item.quantity * cart_item.other.price
     elif cart_item.book_wrap:
         cart_item.total_cost = cart_item.quantity * cart_item.book_wrap.price
-    elif cart_item.exlibris:
-        cart_item.total_cost = cart_item.quantity * cart_item.exlibris.price
+    elif cart_item.bookmark:
+        cart_item.total_cost = cart_item.quantity * cart_item.bookmark.price
     elif cart_item.booklet_folder:
         cart_item.total_cost = cart_item.quantity * cart_item.booklet_folder.price
     elif cart_item.school_office:
@@ -509,3 +510,4 @@ def school_office_view(request):
         'others': others
     }
     return render(request, 'store/school_and_office.html', context)
+
