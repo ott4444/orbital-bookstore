@@ -27,6 +27,7 @@ MySQL database
 Git (for version control)
 A virtual environment (recommended)
 Step-by-Step Installation
+
 Clone the repository
 
 
@@ -37,8 +38,8 @@ Set up a virtual environment
 
 Create a virtual environment and activate it:
 
-
 python -m venv venv
+
 source venv/bin/activate  # On Windows use `venv\Scripts\activate`
 
 Install dependencies
@@ -51,26 +52,11 @@ Set up the MySQL database
 
 Create a new MySQL database and update the settings.py with your database credentials.
 
-Example:
-
-python
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'your_db_name',
-        'USER': 'your_db_user',
-        'PASSWORD': 'your_db_password',
-        'HOST': 'localhost',
-        'PORT': '3306',
-    }
-}
 Run migrations
 
-After configuring the database, run the following commands to apply migrations and set up your database tables:
+After configuring the database, run the following command to apply migrations and set up your database tables:
 
 
-python manage.py makemigrations
 python manage.py migrate
 
 Create a superuser
@@ -109,20 +95,6 @@ Admin Panel
 
 Access the admin panel at /admin to manage products, categories, and user orders.
 
-Contributing
-
-If you'd like to contribute, please fork the repository and use a feature branch. Pull requests are welcome!
-
-Fork the repo
-
-Create your feature branch: git checkout -b feature/my-feature
-Commit your changes: git commit -m 'Add some feature'
-Push to the branch: git push origin feature/my-feature
-Submit a pull request
-
-License
-
-This project is licensed under the MIT License.
 
 
 ## Demo Video
