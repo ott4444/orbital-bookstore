@@ -232,3 +232,33 @@ h3.add-review {
     padding: 5px 10px;
     cursor: pointer;
 }
+
+.form-container {
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto; /* Center the form */
+    padding: 20px;
+    background-color: #f9f9f9; /* Optional: Add a background color for visibility */
+    border-radius: 8px; /* Optional: Rounded corners */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Optional: Add shadow for depth */
+}
+
+.form-group {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    width: 150px; /* Adjust the width of the label to your preference */
+    margin-right: 10px;
+}
+
+.form-group input {
+    flex: 1; /* Make the input take up remaining space */
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+
